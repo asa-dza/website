@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import { Image } from "astro:assets";
+import { areas } from "../../../data/areas";
+
+export function getStaticPaths() {
+    return areas.map((area) => ({
+        params: { slug: area.slug },
+        props: { area },
+    }));
+}
+
+const { area } = Astro.props;
+const lang = "fr";
+const t = area.t[lang];
+const alternates = {
+    ar: `/ar/areas/${area.slug}/`,
+    fr: `/fr/areas/${area.slug}/`,
+    en: `/en/areas/${area.slug}/`,
+};
+---
+
+<BaseLayout
+    title={`${t.title} — ASA`}
+    description={t.tagline}
+    {lang}
+    alternates={alternates}
+>
+    <Breadcrumb
+        items={[
+            { label: "Accueil", href: "/fr/" },
+            { label: "Domaines", href: "/fr/areas/" },
+            { label: t.title },
+        ]}
+    />
+
+    <article class="section-tight stack-26">
+        <div class="stack-18">
+            <div class="pill">
+                <Image src={area.icon} alt={t.title} width={28} height={28} />
+                <span>{t.title}</span>
+            </div>
+            <div>
+                <h2>{t.title}</h2>
+                <p class="muted">{t.tagline}</p>
+            </div>
+            <p>{t.description}</p>
+        </div>
+
+        <div class="card stack-18">
+            <h3>Ce que vous apprendrez</h3>
+            <ul>
+                {t.topics.map((topic) => <li>{topic}</li>)}
+            </ul>
+        </div>
+
+        <div class="btns">
+            <a class="btn primary" href="/fr/workshops/"
+                >Parcourir les ateliers</a
+            >
+            <a class="btn" href="/fr/areas/">← Tous les domaines</a>
+        </div>
+    </article>
+</BaseLayout>

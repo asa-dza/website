@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { siteFullName, siteDescription } from "../../../i18n/site.ts";
+
+const lang = "ar";
+const alternates = { ar: "/ar/about/", fr: "/fr/about/", en: "/en/about/" };
+---
+
+<BaseLayout
+    title={siteFullName[lang]}
+    description={siteDescription[lang]}
+    lang={lang}
+    alternates={alternates}
+>
+    <section class="hero section-tight">
+        <div class="stack-18">
+            <h1>عن ASA</h1>
+            <p>
+                أكاديمية الدراسات المتقدمة (ASA) مركز للتطوير المهني في الجزائر،
+                مكرّس لردم الهوة بين النظرية الأكاديمية ومتطلبات الميدان المهني.
+            </p>
+
+            <p class="muted">
+                من خلال نموذج ورشات مكثفة ومركّزة، نوفر للمهنيين والطلاب البيئة
+                المناسبة لاكتساب كفاءات عالية القيمة، قابلة للتطبيق فوراً في سوق
+                العمل الحديث.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>طريقة مختلفة في التعلم</h3>
+                    <p class="muted" style="margin:0;">
+                        ما وراء الأساليب التقليدية
+                    </p>
+                </div>
+
+                <p>
+                    تأسست ASA على قناعة بأن التعلم الحقيقي يحدث عند تقاطع
+                    <strong>الصرامة الأكاديمية</strong> و
+                    <strong>التطبيق العملي</strong>. كثيراً ما تترك البرامج
+                    التقليدية فجوة؛ نحن هنا لسدّها.
+                </p>
+
+                <p>
+                    نهجنا يؤثر العمق على الاتساع. لا نقدم مجرد دروس؛ بل نصمم
+                    ورشات تُعلي من شأن الوضوح والتقدم القابل للقياس. سواء في
+                    العلوم التقنية أو المهارات المهنية، هدفنا أن يغادر كل مشارك
+                    بكفاءة جديدة ملموسة.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" aria-labelledby="about-pages">
+        <div class="stack-18">
+            <div>
+                <h3 id="about-pages" style="margin:0 0 6px;">إطارنا المنهجي</h3>
+                <p class="muted" style="margin:0;">
+                    اكتشف المبادئ والأساليب التي تُعرِّف ASA.
+                </p>
+            </div>
+
+            <div class="grid">
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>المهمة والرؤية</h3>
+                    </div>
+
+                    <div class="area-card-body">
+                        <p class="muted">
+                            تعرّف على التزامنا تجاه المشهد المهني الجزائري
+                            والأهداف بعيدة المدى التي تقود نمونا.
+                        </p>
+
+                        <p>
+                            <a href="/ar/about/mission/">اقرأ عن مهمتنا →</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>نموذج الورشات</h3>
+                    </div>
+
+                    <div class="area-card-body">
+                        <p class="muted">
+                            تعرّف على نهج التعلم المجزّأ، المخرجات القائمة على
+                            ملف الأعمال، وفلسفتنا التعليمية بإشراف خبراء.
+                        </p>
+
+                        <p>
+                            <a href="/ar/about/approach/">استكشف نهجنا →</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

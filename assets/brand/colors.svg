@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="224.35356mm"
+   height="90.002647mm"
+   viewBox="0 0 224.35356 90.002647"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e94, 2025-05-08)"
+   sodipodi:docname="colors.svg"
+   inkscape:export-filename="colors.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.77504209"
+     inkscape:cx="379.33424"
+     inkscape:cy="545.77681"
+     inkscape:window-width="1920"
+     inkscape:window-height="1115"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="376.75372"
+       y="101.92995"
+       width="596.09668"
+       height="55.480858"
+       id="rect2" />
+    <rect
+       x="376.75372"
+       y="101.92995"
+       width="596.09668"
+       height="55.480858"
+       id="rect4" />
+    <rect
+       x="376.75372"
+       y="101.92995"
+       width="668.35083"
+       height="58.061363"
+       id="rect6" />
+    <rect
+       x="376.75372"
+       y="101.92995"
+       width="596.09668"
+       height="55.480858"
+       id="rect8" />
+    <rect
+       x="376.75372"
+       y="101.92995"
+       width="596.09668"
+       height="55.480858"
+       id="rect10" />
+    <rect
+       x="376.75372"
+       y="101.92995"
+       width="708.34863"
+       height="45.158836"
+       id="rect12" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-4.7809234,-3.9784861)">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#ff6600;stroke-width:0;stroke-opacity:0.479815"
+       id="rect13"
+       width="224.35355"
+       height="90.002647"
+       x="4.7809234"
+       y="3.9787502" />
+    <g
+       id="g2"
+       transform="translate(0,-29.82841)">
+      <rect
+         style="fill:#1b2824;fill-opacity:1;stroke:#ff6600;stroke-width:0;stroke-opacity:0.479815"
+         id="rect1"
+         width="50"
+         height="15"
+         x="4.7809234"
+         y="33.806896" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,-43.183268,8.9617222)"
+         id="text1"
+         style="font-size:32px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:center;white-space:pre;shape-inside:url(#rect2);display:inline"
+         x="-294.20743"
+         y="0"><tspan
+           x="380.69037"
+           y="131.76944"
+           id="tspan1">#1B2824 (Obsidian): Primary brand color </tspan></text>
+    </g>
+    <g
+       id="g3"
+       transform="translate(0,-14.827881)">
+      <rect
+         style="fill:#eeece9;fill-opacity:1;stroke:#ff6600;stroke-width:0;stroke-opacity:0.479815"
+         id="rect3"
+         width="50"
+         height="15"
+         x="4.7809234"
+         y="33.806896" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,-43.183268,8.9617222)"
+         id="text3"
+         style="font-size:32px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:start;white-space:pre;shape-inside:url(#rect4);display:inline"
+         x="-283.07135"
+         y="0"><tspan
+           x="376.75391"
+           y="131.76944"
+           id="tspan2">#EEECE9 (Alabaster): Background color</tspan></text>
+    </g>
+    <g
+       id="g5"
+       transform="translate(0,45.174236)">
+      <rect
+         style="fill:#304e4d;fill-opacity:1;stroke:#ff6600;stroke-width:0;stroke-opacity:0.479815"
+         id="rect5"
+         width="50"
+         height="15"
+         x="4.7809234"
+         y="33.806896" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,-43.183268,8.9617222)"
+         id="text5"
+         style="font-size:32px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:start;white-space:pre;shape-inside:url(#rect6);display:inline"
+         x="-594.31873"
+         y="0"><tspan
+           x="376.75391"
+           y="131.76944"
+           id="tspan3">#304E4D (Slate): Supporting text / muted </tspan><tspan
+           x="376.75391"
+           y="189.83194"
+           id="tspan6"><tspan
+             dx="0 14.463928 18.879944 18.367981 12.543945 17.887939 18.367981"
+             id="tspan4">content</tspan></tspan></text>
+    </g>
+    <rect
+       style="fill:#6e3d23;fill-opacity:1;stroke:#ff6600;stroke-width:0;stroke-opacity:0.479815"
+       id="rect7"
+       width="50"
+       height="15"
+       x="4.7809234"
+       y="33.979546" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-43.183268,9.1343707)"
+       id="text7"
+       style="font-size:32px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:start;white-space:pre;shape-inside:url(#rect8);display:inline"
+       x="-564.87885"
+       y="0"><tspan
+         x="376.75391"
+         y="131.76944"
+         id="tspan8">#6E3D23 (Mahogany): Highlight color</tspan></text>
+    <g
+       id="g9"
+       transform="translate(0,15.173178)">
+      <rect
+         style="fill:#9d7960;fill-opacity:1;stroke:#ff6600;stroke-width:0;stroke-opacity:0.479815"
+         id="rect9"
+         width="50"
+         height="15"
+         x="4.7809234"
+         y="33.806896" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,-43.183268,8.9617222)"
+         id="text9"
+         style="font-size:32px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:start;white-space:pre;shape-inside:url(#rect10);display:inline"
+         x="-560.33484"
+         y="0"><tspan
+           x="376.75391"
+           y="131.76944"
+           id="tspan10">#9D7960 (Bronze): Secondary accent</tspan></text>
+    </g>
+    <g
+       id="g11"
+       transform="translate(0,30.173707)">
+      <rect
+         style="fill:#99b3b7;fill-opacity:1;stroke:#ff6600;stroke-width:0;stroke-opacity:0.479815"
+         id="rect11"
+         width="50"
+         height="15"
+         x="4.7809234"
+         y="33.806896" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,-43.183268,8.9617222)"
+         id="text11"
+         style="font-size:32px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:start;white-space:pre;shape-inside:url(#rect12);display:inline"
+         x="-577.32684"
+         y="0"><tspan
+           x="376.75391"
+           y="131.76944"
+           id="tspan12">#99B3B7 (Pewter): Secondary surface / block </tspan><tspan
+           x="376.75391"
+           y="176.92764"
+           id="tspan14"><tspan
+             dx="0 14.463928 18.879944 8.7359619 18.879944"
+             id="tspan13">color</tspan></tspan></text>
+    </g>
+  </g>
+</svg>

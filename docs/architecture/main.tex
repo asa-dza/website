@@ -1,0 +1,85 @@
+\documentclass[11pt,a4paper,fleqn]{book} % Default font size and left-justified equations
+
+\input{latex/structure} % Insert the commands.tex file which contains the majority of the structure behind the template
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\newgeometry{top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm}
+\begingroup
+\thispagestyle{empty}
+\AddToShipoutPicture*{\put(0,0){\includegraphics[width=21cm]{background.png}}} % Full-page background
+\noindent
+\centering
+\vspace{0.7cm}
+
+\includegraphics[width=1.5cm]{../../resources/logo}
+
+{\sffamily \bfseries \Large \textcolor{alabaster}{\input{../../resources/name.txt}}}
+
+{\sffamily \textcolor{alabaster}{\input{../../resources/slogan.txt}}}
+
+\vspace{7cm}
+
+\centering
+{\Huge \sffamily \textcolor{obsidian}{\textbf{Operations Manual}}}
+
+{\LARGE \sffamily \textcolor{obsidian}{Version 1.0}}
+
+\vspace*{9cm}
+
+{\sffamily \textcolor{obsidian}{\today}}
+
+{\sffamily \textcolor{obsidian}{ASA Team}}
+
+\endgroup
+
+\restoregeometry
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+\newpage
+~\vfill
+\thispagestyle{empty}
+
+\noindent Copyright \copyright\ 2025\\ % Copyright notice
+
+\chapterimage{chapter.png} % Table of contents heading image
+
+\pagestyle{empty} % No headers
+
+%----------------------------------------------------------------------------------------
+%	Approvals and Revision History
+%----------------------------------------------------------------------------------------
+\include{chapters/0-1-approvals}
+\include{chapters/0-2-revision-history}
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+\tableofcontents % Print the table of contents itself
+
+\pagestyle{fancy} % Print headers again
+
+\part{Core Operations}
+\include{chapters/1-purpose-scope-and-operating-principles}
+\include{chapters/2-roles-and-responsabilities}
+\include{chapters/3-service-lifecycle-and-governance}
+\include{chapters/4-quality-assurance-and-continuous-improvement}
+\include{chapters/5-records-and-documentation}
+\include{chapters/6-risk-management-and-compliance}
+
+\part{Human Resources Management}
+
+
+\part{Finance and Accounting}
+
+\appendix
+\include{appendices/1-iso-9001-clause-alignement}
+
+\end{document}

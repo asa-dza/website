@@ -1,0 +1,117 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { siteFullName, siteDescription } from "../../../i18n/site.ts";
+
+const lang = "fr";
+const alternates = { ar: "/ar/about/", fr: "/fr/about/", en: "/en/about/" };
+---
+
+<BaseLayout
+    title={siteFullName[lang]}
+    description={siteDescription[lang]}
+    lang={lang}
+    alternates={alternates}
+>
+    <section class="hero section-tight">
+        <div class="stack-18">
+            <h1>À propos d'ASA</h1>
+            <p>
+                Advanced Studies Academy (ASA) est un centre de développement
+                professionnel en Algérie, dédié à combler le fossé entre la
+                théorie académique et les exigences concrètes du monde
+                professionnel.
+            </p>
+
+            <p class="muted">
+                À travers un modèle d'ateliers intensifs et ciblés, nous offrons
+                aux professionnels et aux étudiants un environnement propice à
+                l'acquisition de compétences à forte valeur ajoutée, directement
+                applicables dans le monde du travail actuel.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>Une autre façon d'apprendre</h3>
+                    <p class="muted" style="margin:0;">
+                        Au-delà des approches conventionnelles
+                    </p>
+                </div>
+
+                <p>
+                    ASA a été fondé sur la conviction que l'apprentissage
+                    véritable se produit à l'intersection de la <strong
+                        >rigueur académique</strong
+                    > et de l'<strong>application pratique</strong>. Les
+                    programmes conventionnels laissent souvent un vide ; nous
+                    cherchons à le combler.
+                </p>
+
+                <p>
+                    Notre approche privilégie la profondeur à l'étendue. Nous ne
+                    proposons pas de simples cours ; nous concevons des ateliers
+                    qui mettent l'accent sur la clarté et la progression
+                    mesurable. Qu'il s'agisse de sciences techniques ou de
+                    compétences professionnelles, notre objectif est de garantir
+                    que chaque participant reparte avec une nouvelle compétence
+                    concrète.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" aria-labelledby="about-pages">
+        <div class="stack-18">
+            <div>
+                <h3 id="about-pages" style="margin:0 0 6px;">Notre approche</h3>
+                <p class="muted" style="margin:0;">
+                    Découvrez les principes et méthodes qui définissent ASA.
+                </p>
+            </div>
+
+            <div class="grid">
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>Mission & Vision</h3>
+                    </div>
+
+                    <div class="area-card-body">
+                        <p class="muted">
+                            Découvrez notre engagement envers le paysage
+                            professionnel algérien et les objectifs à long terme
+                            qui guident notre développement.
+                        </p>
+
+                        <p>
+                            <a href="/fr/about/mission/">Lire notre mission →</a
+                            >
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>Le modèle en ateliers</h3>
+                    </div>
+
+                    <div class="area-card-body">
+                        <p class="muted">
+                            Découvrez notre approche microlearning, les
+                            productions orientées portfolio et notre philosophie
+                            pédagogique animée par des experts.
+                        </p>
+
+                        <p>
+                            <a href="/fr/about/approach/"
+                                >Explorer notre approche →</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

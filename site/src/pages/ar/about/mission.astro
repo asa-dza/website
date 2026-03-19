@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { siteFullName, siteDescription } from "../../../i18n/site.ts";
+const lang = "ar";
+const alternates = {
+    ar: "/ar/about/mission/",
+    fr: "/fr/about/mission/",
+    en: "/en/about/mission/",
+};
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+---
+
+<BaseLayout
+    title={siteFullName[lang]}
+    description={siteDescription[lang]}
+    lang={lang}
+    alternates={alternates}
+>
+    <Breadcrumb
+        dir="rtl"
+        items={[
+            { label: "الرئيسية", href: "/ar/" },
+            { label: "عن ASA", href: "/ar/about/" },
+            { label: "المهمة والرؤية" },
+        ]}
+    />
+
+    <!-- Page intro -->
+    <section class="hero section-tight">
+        <div class="stack-18">
+            <h1>المهمة والرؤية</h1>
+            <p>
+                تسعى ASA إلى المساهمة في ترسيخ ثقافة تعلم تتعزز فيها المعرفة
+                والمهارات العملية والفضول الفكري كل منها بالآخر.
+            </p>
+            <p class="muted">
+                مهمتنا هي خلق تجارب تعلم مركّزة تدعم التطوير المهني، النمو
+                الأكاديمي، والانخراط الحقيقي مع حقول المعرفة الناشئة.
+            </p>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>مهمتنا</h3>
+                    <p class="muted" style="margin:0;">
+                        تعزيز التعلم العملي والفكري
+                    </p>
+                </div>
+                <p>
+                    تتمثل مهمة ASA في تقديم ورشات عالية الجودة تجمع بين
+                    <strong>الصرامة الأكاديمية</strong> و
+                    <strong>الأثر العملي</strong>. من خلال الجمع بين مدرّبين ذوي
+                    خبرة، وصيغ تعلم مركّزة، وبرامج مصممة بعناية، تهدف الأكاديمية
+                    إلى مساعدة المشاركين على اكتساب كفاءات قابلة للتطبيق مباشرة
+                    في السياقين المهني والأكاديمي.
+                </p>
+                <p>
+                    تسعى ASA أيضاً إلى تعزيز توجه التعلم المستمر. في ظل مجالات
+                    تتطور بسرعة، يستلزم التعليم الفعّال الفضول والقدرة على
+                    التكيف والانفتاح على الأفكار الجديدة. من خلال برامجها، تطمح
+                    الأكاديمية إلى مرافقة المتعلمين الراغبين في تعميق فهمهم
+                    وتوسيع قدراتهم.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>رؤيتنا</h3>
+                    <p class="muted" style="margin:0;">
+                        بناء منصة للتعلم المتقدم
+                    </p>
+                </div>
+                <p>
+                    تطمح ASA إلى أن تصبح منصة رائدة للتطوير المهني المتقدم
+                    في الجزائر. بربط الخبرة الأكاديمية بالممارسة الميدانية، تسعى
+                    الأكاديمية إلى دعم جيل جديد من المهنيين الجامعين بين الكفاءة
+                    التقنية والعمق الفكري.
+                </p>
+                <p>
+                    على المدى البعيد، تعتزم ASA توسيع شبكة مدرّبيها وشراكاتها
+                    ومبادراتها التعليمية، مساهِمةً في بناء منظومة حيّة لتبادل
+                    المعرفة والتطوير المهني.
+                </p>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

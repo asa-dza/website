@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { siteFullName, siteDescription } from "../../../i18n/site.ts";
+
+const lang = "en";
+const alternates = { ar: "/ar/about/", fr: "/fr/about/", en: "/en/about/" };
+---
+
+<BaseLayout
+    title={siteFullName[lang]}
+    description={siteDescription[lang]}
+    lang={lang}
+    alternates={alternates}
+>
+    <section class="hero section-tight">
+        <div class="stack-18">
+            <h1>About ASA</h1>
+            <p>
+                Advanced Studies Academy (ASA) is a professional learning center
+                in Algeria dedicated to bridging the gap between academic theory
+                and practical industry demands.
+            </p>
+
+            <p class="muted">
+                Through a model of intensive, focused workshops, we provide
+                professionals and students with the environment to acquire
+                high-value skills that are immediately applicable in the modern
+                workforce.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>A Different Way to Learn</h3>
+                    <p class="muted" style="margin:0;">
+                        Moving beyond traditional training
+                    </p>
+                </div>
+
+                <p>
+                    ASA was founded on the belief that meaningful learning
+                    happens at the intersection of <strong
+                        >academic rigor</strong
+                    > and
+                    <strong>practical application</strong>. Traditional programs
+                    often leave a gap; we aim to fill it.
+                </p>
+
+                <p>
+                    Our approach favors depth over breadth. We don't just offer
+                    courses; we design workshops that emphasize clarity and
+                    measurable progress. Whether in technical sciences or
+                    professional soft skills, our goal is to ensure every
+                    learner leaves with a concrete new competency.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" aria-labelledby="about-pages">
+        <div class="stack-18">
+            <div>
+                <h3 id="about-pages" style="margin:0 0 6px;">Our Framework</h3>
+                <p class="muted" style="margin:0;">
+                    Explore the principles and methods that define ASA.
+                </p>
+            </div>
+
+            <div class="grid">
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>Mission & Vision</h3>
+                    </div>
+
+                    <div class="area-card-body">
+                        <p class="muted">
+                            Understand our commitment to the Algerian
+                            professional landscape and the long-term goals
+                            guiding our growth.
+                        </p>
+
+                        <p>
+                            <a href="/en/about/mission/"
+                                >Read about our mission →</a
+                            >
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>The Workshop Model</h3>
+                    </div>
+
+                    <div class="area-card-body">
+                        <p class="muted">
+                            Learn about our microlearning approach,
+                            portfolio-based outcomes, and expert-led teaching
+                            philosophy.
+                        </p>
+
+                        <p>
+                            <a href="/en/about/approach/"
+                                >Explore our approach →</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

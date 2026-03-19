@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getAllWorkshops } from "../../../lib/workshops";
+
+const lang = "fr";
+const alternates = {
+    ar: "/ar/workshops/",
+    fr: "/fr/workshops/",
+    en: "/en/workshops/",
+};
+
+const workshops = await getAllWorkshops();
+---
+
+<BaseLayout title="Ateliers — ASA" {lang} alternates={alternates}>
+    <section class="section-tight">
+        <div>
+            <h1>Ateliers</h1>
+            <p class="muted">
+                Découvrez nos prochaines opportunités d'apprentissage dans les
+                domaines académiques et professionnels clés.
+            </p>
+        </div>
+
+        <div class="workshops-grid">
+            {
+                workshops.map((workshop) => {
+                    const t = workshop.t[lang];
+                    return (
+                        <div class="workshop-item">
+                            <a
+                                href={`/fr/workshops/${workshop.slug}/`}
+                                class={`workshop-card ${t.image?.src ? "has-poster" : ""}`}
+                            >
+                                <div class="workshop-card-main">
+                                    <h2>{t.title}</h2>
+                                    <p class="muted">{t.summary}</p>
+                                    <div class="meta">
+                                        <span>{workshop.startAt}</span>
+                                        <span>{workshop.deliveryFormat}</span>
+                                        <span>
+                                            {workshop.registrationStatus}
+                                        </span>
+                                    </div>
+                                    <span class="cta">Voir l'atelier →</span>
+                                </div>
+                                {t.image?.src && (
+                                    <div class="workshop-card-poster-wrap">
+                                        <img
+                                            src={t.image.src}
+                                            alt={t.image.alt ?? t.title}
+                                            class="workshop-card-poster"
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                )}
+                            </a>
+                        </div>
+                    );
+                })
+            }
+        </div>
+    </section>
+</BaseLayout>

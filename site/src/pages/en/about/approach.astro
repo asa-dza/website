@@ -1,0 +1,183 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { siteFullName, siteDescription } from "../../../i18n/site.ts";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+
+const lang = "en";
+const alternates = {
+    ar: "/ar/about/approach/",
+    fr: "/fr/about/approach/",
+    en: "/en/about/approach/",
+};
+---
+
+<BaseLayout
+    title={siteFullName[lang]}
+    description={siteDescription[lang]}
+    lang={lang}
+    alternates={alternates}
+>
+    <Breadcrumb
+        items={[
+            { label: "Home", href: "/en/" },
+            { label: "About", href: "/en/about/" },
+            { label: "Learning Approach" }, // no href = current page
+        ]}
+    />
+
+    <!-- Page intro -->
+    <section class="hero section-tight">
+        <div class="stack-18">
+            <h1>Learning Approach</h1>
+
+            <p>
+                ASA develops learning experiences designed to respond to the
+                evolving needs of modern professional environments. Our approach
+                emphasizes structure, clarity of purpose, and strong alignment
+                between learning activities and real-world skills.
+            </p>
+
+            <p class="muted">
+                Workshops are designed to provide focused learning experiences
+                that combine academic rigor, practical application, and modern
+                technological support.
+            </p>
+        </div>
+    </section>
+
+    <!-- Structured learning -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>Structured Learning Design</h3>
+                    <p class="muted" style="margin:0;">
+                        Clear objectives and organized progression
+                    </p>
+                </div>
+
+                <p>
+                    Many training initiatives rely on loosely organized sessions
+                    that focus primarily on information delivery. ASA workshops
+                    are instead designed as structured learning units built
+                    around clearly defined objectives and logical progression.
+                </p>
+
+                <p>
+                    Each workshop aims to guide participants through a coherent
+                    sequence of concepts, demonstrations, and practical
+                    activities that support meaningful skill development.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Targeted learning -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>Clear Target and Audience</h3>
+                    <p class="muted" style="margin:0;">
+                        Programs designed for specific learners
+                    </p>
+                </div>
+
+                <p>
+                    Effective learning requires a clear understanding of who the
+                    program is designed for. ASA workshops define their intended
+                    audience carefully, whether participants are students,
+                    early-career professionals, or experienced practitioners.
+                </p>
+
+                <p>
+                    This targeted approach allows workshops to focus on the most
+                    relevant knowledge and skills for each group.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market relevance -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>Alignment with Professional Needs</h3>
+                    <p class="muted" style="margin:0;">
+                        Connecting learning with real-world demands
+                    </p>
+                </div>
+
+                <p>
+                    ASA seeks to ensure that its programs reflect current
+                    professional realities. Workshops are developed with
+                    attention to evolving industries, technological trends, and
+                    emerging fields of expertise.
+                </p>
+
+                <p>
+                    By aligning learning objectives with real professional
+                    contexts, the academy aims to provide skills that can be
+                    applied directly in academic and professional environments.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology integration -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>Technology-Supported Learning</h3>
+                    <p class="muted" style="margin:0;">
+                        Modern tools and digital environments
+                    </p>
+                </div>
+
+                <p>
+                    Contemporary learning increasingly relies on digital
+                    infrastructure and computational tools. ASA workshops are
+                    supported by modern technological environments that enable
+                    experimentation, interactive learning, and access to
+                    advanced resources.
+                </p>
+
+                <p>
+                    Particular attention is given to the role of artificial
+                    intelligence and digital technologies in shaping future
+                    professional practices.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Focused format -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>Focused Workshop Format</h3>
+                    <p class="muted" style="margin:0;">
+                        Depth and measurable outcomes
+                    </p>
+                </div>
+
+                <p>
+                    ASA favors intensive workshop formats that allow learners to
+                    engage deeply with a subject within a limited and manageable
+                    timeframe. This model supports concentrated learning while
+                    remaining compatible with professional and academic
+                    schedules.
+                </p>
+
+                <p>
+                    Whenever appropriate, workshops incorporate exercises,
+                    demonstrations, and project-based activities designed to
+                    translate knowledge into concrete skills.
+                </p>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

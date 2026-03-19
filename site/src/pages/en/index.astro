@@ -1,0 +1,365 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteFullName, siteDescription, siteTagline } from "../../i18n/site.ts";
+
+const lang = "en";
+const alternates = { ar: "/ar/", fr: "/fr/", en: "/en/" };
+
+import Carousel from "../../components/Carousel.astro";
+import medecine from "../../assets/images/medecine.jpg";
+import dentistry from "../../assets/images/dentistry.jpg";
+import aiNetwork from "../../assets/images/AI-neural-network.jpg";
+import programming from "../../assets/images/programming.jpg";
+import academic from "../../assets/images/academic.jpg";
+import softSkills from "../../assets/images/soft-skills.jpg";
+
+const carouselSlides = [
+    {
+        image: medecine,
+        alt: "Medicine workshops",
+        title: "Medicine",
+        subtitle:
+            "Focused workshops supporting continuing professional development and clinically relevant upskilling.",
+    },
+    {
+        image: dentistry,
+        alt: "Dentistry workshops",
+        title: "Dentistry",
+        subtitle:
+            "Practice-oriented training designed for professional growth and applied learning in dentistry.",
+    },
+    {
+        image: aiNetwork,
+        alt: "Artificial intelligence workshops",
+        title: "Artificial Intelligence",
+        subtitle:
+            "Workshops introducing core and applied AI concepts, supported by modern digital learning tools.",
+    },
+    {
+        image: programming,
+        alt: "Programming workshops",
+        title: "Programming",
+        subtitle:
+            "Structured learning in software development, computational thinking, and practical problem-solving.",
+    },
+    {
+        image: academic,
+        alt: "Academic support workshops",
+        title: "Academic Support",
+        subtitle:
+            "University-level support designed to strengthen academic performance, preparation, and study skills.",
+    },
+    {
+        image: softSkills,
+        alt: "Soft skills workshops",
+        title: "Soft Skills",
+        subtitle:
+            "Workshops in communication, teamwork, and other professional competencies essential for career readiness.",
+    },
+];
+
+import aiField from "../../assets/images/ai-field.png";
+import medicineField from "../../assets/images/medecine-field.png";
+import dentistryField from "../../assets/images/dentistry-field.png";
+import programmingField from "../../assets/images/programming-field.png";
+import academicSupportField from "../../assets/images/academic-support-field.png";
+import softSkillsField from "../../assets/images/soft-skills-field.png";
+
+import expertLed from "../../assets/images/expert-led.png";
+import focus from "../../assets/images/focus.png";
+import microlearning from "../../assets/images/microlearning.png";
+import portfolio from "../../assets/images/portfolio.png";
+---
+
+<BaseLayout
+    title={siteFullName[lang]}
+    description={siteDescription[lang]}
+    lang={lang}
+    alternates={alternates}
+>
+    <!-- Hero -->
+    <section class="hero section-tight">
+        <div class="stack-26">
+            <div class="pill">
+                <span class="dot"></span>
+                <span>First workshops coming soon</span>
+            </div>
+
+            <div class="stack-18">
+                <h2>
+                    Advanced workshops in AI, healthcare, programming, and
+                    professional skills.
+                </h2>
+                <p class="muted" style="margin:0; font-size:1rem;">
+                    {siteTagline[lang]}
+                </p>
+                <p>
+                    ASA is a professional learning center in Algeria offering
+                    focused workshops designed for practical skills, academic
+                    rigor, and real-world relevance.
+                </p>
+                <div class="btns">
+                    <a class="btn primary" href="/en/workshops/"
+                        >Browse Workshops</a
+                    >
+                    <a class="btn" href="/en/about/">Learn About ASA</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Focus areas carousel -->
+    <section class="section" aria-labelledby="home-highlights">
+        <div class="stack-18">
+            <div>
+                <h3 id="home-highlights" style="margin:0 0 6px;">
+                    Focus Areas
+                </h3>
+                <p class="muted" style="margin:0;">
+                    ASA's workshops are organized around carefully selected
+                    professional and academic domains.
+                </p>
+            </div>
+            <Carousel
+                slides={carouselSlides}
+                label="ASA focus areas carousel"
+            />
+        </div>
+    </section>
+
+    <!-- Areas of training -->
+    <section class="section" id="areas" aria-labelledby="areas-title">
+        <div class="stack-18">
+            <div>
+                <h3 id="areas-title" style="margin:0 0 6px;">
+                    Areas of Training
+                </h3>
+                <p class="muted" style="margin:0;">
+                    ASA focuses on high-value workshop areas that support
+                    professional growth, academic development, and practical
+                    competence.
+                </p>
+            </div>
+
+            <div class="grid">
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img src={aiField.src} alt="Artificial Intelligence" />
+                        <h3>Artificial Intelligence</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            Applied AI, machine learning, and modern digital
+                            tools for learners and professionals.
+                        </p>
+                    </div>
+                </div>
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img src={medicineField.src} alt="Medicine" />
+                        <h3>Medicine</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            Clinically relevant workshops supporting continuing
+                            professional development and focused upskilling.
+                        </p>
+                    </div>
+                </div>
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img src={dentistryField.src} alt="Dentistry" />
+                        <h3>Dentistry</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            Practice-oriented training designed for professional
+                            growth and applied learning in dentistry.
+                        </p>
+                    </div>
+                </div>
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img src={programmingField.src} alt="Programming" />
+                        <h3>Programming</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            Practical software development, computational
+                            thinking, and technical problem-solving skills.
+                        </p>
+                    </div>
+                </div>
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img
+                            src={academicSupportField.src}
+                            alt="Academic Support"
+                        />
+                        <h3>Academic Support</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            Structured support for university-level learning,
+                            preparation, and academic performance.
+                        </p>
+                    </div>
+                </div>
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img src={softSkillsField.src} alt="Soft Skills" />
+                        <h3>Soft Skills</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            Communication, teamwork, and essential competencies
+                            for professional effectiveness.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why choose ASA -->
+    <section class="section" aria-labelledby="why-title">
+        <div class="stack-18">
+            <div>
+                <h3 id="why-title" style="margin:0 0 6px;">Why Choose ASA</h3>
+                <p class="muted" style="margin:0;">
+                    A workshop model designed for focus, quality, and
+                    professional relevance.
+                </p>
+            </div>
+
+            <div class="grid">
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>Expert-Led</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <img
+                            src={expertLed.src}
+                            alt=""
+                            class="feature-illustration"
+                            loading="lazy"
+                        />
+                        <p>
+                            Workshops are led by instructors with strong
+                            academic preparation and practical experience in
+                            their fields.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>Focused Format</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <img
+                            src={focus.src}
+                            alt=""
+                            class="feature-illustration"
+                            loading="lazy"
+                        />
+                        <p>
+                            ASA emphasizes short, intensive learning experiences
+                            built around clear objectives and useful outcomes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>Microlearning Approach</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <img
+                            src={microlearning.src}
+                            alt=""
+                            class="feature-illustration"
+                            loading="lazy"
+                        />
+                        <p>
+                            Learning is organized into manageable units that
+                            help you progress steadily, retain more, and fit
+                            training into a busy schedule.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>Portfolio Building</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <img
+                            src={portfolio.src}
+                            alt=""
+                            class="feature-illustration"
+                            loading="lazy"
+                        />
+                        <p>
+                            Selected workshops are designed to help you produce
+                            concrete outputs, projects, or documented work that
+                            strengthen your academic or professional portfolio.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Credibility / participant-facing commitment -->
+    <section class="section" aria-labelledby="expect-title">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3 id="expect-title">What You Can Expect</h3>
+                    <p class="muted" style="margin:0;">
+                        ASA is being developed with academic seriousness and a
+                        strong orientation toward practical value.
+                    </p>
+                </div>
+
+                <p>
+                    You can expect clear learning goals, focused instruction,
+                    and workshop formats designed to give you knowledge and
+                    skills you can apply immediately. Where relevant, training
+                    will also support portfolio development through guided
+                    exercises, projects, or demonstrable outputs.
+                </p>
+
+                <p>
+                    ASA's first workshops will be announced progressively, with
+                    details on dates, formats, instructors, and registration
+                    published on the workshops page.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section" id="contact" aria-labelledby="final-cta-title">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3 id="final-cta-title">
+                        Discover upcoming workshops at ASA
+                    </h3>
+                    <p class="muted" style="margin:0;">
+                        Explore workshop areas, follow upcoming announcements,
+                        or get in touch for general inquiries.
+                    </p>
+                </div>
+
+                <div class="btns">
+                    <a class="btn primary" href="/en/workshops/"
+                        >Browse Workshops</a
+                    >
+                    <a class="btn" href="/en/contact/">Contact ASA</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

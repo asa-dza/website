@@ -1,0 +1,110 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { siteFullName, siteDescription } from "../../../i18n/site.ts";
+
+const lang = "en";
+const alternates = {
+    ar: "/ar/about/mission/",
+    fr: "/fr/about/mission/",
+    en: "/en/about/mission/",
+};
+
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import ShareButton from "../../../components/ShareButton.astro";
+---
+
+<BaseLayout
+    title={siteFullName[lang]}
+    description={siteDescription[lang]}
+    lang={lang}
+    alternates={alternates}
+>
+    <Breadcrumb
+        items={[
+            { label: "Home", href: "/en/" },
+            { label: "About", href: "/en/about/" },
+            { label: "Mission & Vision" }, // no href = current page
+        ]}
+    />
+
+    <!-- Page intro -->
+    <section class="hero section-tight">
+        <div class="stack-18">
+            <h1>Mission & Vision</h1>
+
+            <p>
+                ASA seeks to contribute to a learning culture where knowledge,
+                practical skills, and intellectual curiosity reinforce one
+                another.
+            </p>
+
+            <p class="muted">
+                Our mission is to create focused learning experiences that
+                support professional development, academic growth, and
+                meaningful engagement with emerging fields of knowledge.
+            </p>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>Our Mission</h3>
+                    <p class="muted" style="margin:0;">
+                        Advancing practical and intellectual learning
+                    </p>
+                </div>
+
+                <p>
+                    The mission of ASA is to provide high-quality workshops that
+                    combine <strong>academic rigor</strong> with
+                    <strong>practical relevance</strong>. By bringing together
+                    experienced instructors, focused learning formats, and
+                    carefully designed programs, the academy aims to help
+                    participants acquire skills that can be applied directly in
+                    professional and academic contexts.
+                </p>
+
+                <p>
+                    ASA also seeks to encourage a mindset of continuous
+                    learning. In rapidly evolving fields, meaningful education
+                    requires curiosity, adaptability, and engagement with new
+                    ideas. Through its programs, the academy aims to support
+                    learners who wish to deepen their understanding and expand
+                    their capabilities.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>Our Vision</h3>
+                    <p class="muted" style="margin:0;">
+                        Building a platform for advanced learning
+                    </p>
+                </div>
+
+                <p>
+                    ASA aims to become a leading platform for advanced
+                    professional learning in Algeria. By connecting academic
+                    expertise with real-world practice, the academy seeks to
+                    support a new generation of professionals who combine
+                    technical competence with intellectual depth.
+                </p>
+
+                <p>
+                    In the long term, ASA intends to expand its network of
+                    instructors, partnerships, and educational initiatives,
+                    contributing to a vibrant ecosystem of knowledge exchange
+                    and professional development.
+                </p>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

@@ -1,0 +1,82 @@
+---
+import { siteName, siteFullName, siteType } from "../i18n/site.ts";
+import { Image } from "astro:assets";
+import logo from "../assets/logo-light.svg";
+import { type Lang } from "../i18n/site.ts";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const copyright: Record<Lang, string> = {
+    ar: `© ${new Date().getFullYear()} ${siteFullName.ar} — جميع الحقوق محفوظة`,
+    fr: `© ${new Date().getFullYear()} ${siteFullName.fr} — Tous droits réservés`,
+    en: `© ${new Date().getFullYear()} ${siteFullName.en} — All rights reserved`,
+};
+---
+
+<footer>
+    <div class="wrap">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <Image src={logo} alt={siteName} class="footer-logo" />
+                <div class="footer-brand-text">
+                    <p>{siteFullName[lang]}</p>
+                    <p>{siteType[lang]}</p>
+                </div>
+            </div>
+            <p class="muted">{copyright[lang]}</p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+    .footer-brand {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+        flex-shrink: 0;
+    }
+
+    .footer-logo {
+        display: block;
+        height: 48px;
+        width: auto;
+        flex: 0 0 auto;
+    }
+
+    .footer-brand-text p {
+        margin: 0;
+    }
+
+    .footer-brand-text p:first-child {
+        font-weight: 600;
+    }
+
+    .footer-brand-text p:last-child {
+        margin-top: 4px;
+    }
+
+    :global(html[dir="rtl"]) .footer-inner {
+        flex-direction: row-reverse;
+    }
+
+    :global(html[dir="rtl"]) .footer-brand {
+        flex-direction: row-reverse;
+    }
+
+    :global(html[dir="rtl"]) .footer-brand-text {
+        text-align: right;
+    }
+</style>

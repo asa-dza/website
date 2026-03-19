@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { siteFullName, siteDescription } from "../../../i18n/site.ts";
+const lang = "fr";
+const alternates = { ar: "/ar/about/mission/", fr: "/fr/about/mission/", en: "/en/about/mission/" };
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+---
+
+<BaseLayout
+    title={siteFullName[lang]}
+    description={siteDescription[lang]}
+    lang={lang}
+    alternates={alternates}
+>
+    <Breadcrumb
+        items={[
+            { label: "Accueil", href: "/fr/" },
+            { label: "À propos", href: "/fr/about/" },
+            { label: "Mission & Vision" },
+        ]}
+    />
+
+    <!-- Page intro -->
+    <section class="hero section-tight">
+        <div class="stack-18">
+            <h1>Mission & Vision</h1>
+            <p>
+                ASA cherche à contribuer à une culture de l'apprentissage où la
+                connaissance, les compétences pratiques et la curiosité
+                intellectuelle se renforcent mutuellement.
+            </p>
+            <p class="muted">
+                Notre mission est de créer des expériences d'apprentissage
+                ciblées qui soutiennent le développement professionnel, la
+                croissance académique et un engagement significatif avec les
+                champs de connaissance émergents.
+            </p>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>Notre Mission</h3>
+                    <p class="muted" style="margin:0;">
+                        Faire progresser l'apprentissage pratique et
+                        intellectuel
+                    </p>
+                </div>
+                <p>
+                    La mission d'ASA est de proposer des ateliers de haute
+                    qualité alliant <strong>rigueur académique</strong> et
+                    <strong>pertinence pratique</strong>. En réunissant des
+                    formateurs expérimentés, des formats d'apprentissage ciblés
+                    et des programmes soigneusement conçus, l'académie vise à
+                    aider les participants à acquérir des compétences
+                    directement applicables dans des contextes professionnels et
+                    académiques.
+                </p>
+                <p>
+                    ASA cherche également à encourager une disposition à
+                    l'apprentissage continu. Dans des domaines en constante
+                    évolution, une éducation véritablement utile exige
+                    curiosité, adaptabilité et ouverture aux nouvelles idées. À
+                    travers ses programmes, l'académie aspire à accompagner les
+                    apprenants qui souhaitent approfondir leur compréhension et
+                    élargir leurs capacités.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>Notre Vision</h3>
+                    <p class="muted" style="margin:0;">
+                        Construire une plateforme pour l'apprentissage avancé
+                    </p>
+                </div>
+                <p>
+                    ASA aspire à devenir une plateforme de référence pour le
+                    perfectionnement professionnel avancé en Algérie. En
+                    articulant expertise académique et pratique terrain,
+                    l'académie cherche à accompagner une nouvelle génération de
+                    professionnels alliant compétence technique et profondeur
+                    intellectuelle.
+                </p>
+                <p>
+                    À long terme, ASA entend élargir son réseau de formateurs,
+                    de partenariats et d'initiatives pédagogiques, contribuant
+                    ainsi à un écosystème dynamique d'échange de savoirs et de
+                    développement professionnel.
+                </p>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

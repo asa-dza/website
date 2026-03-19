@@ -1,0 +1,119 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+import {
+    siteFullName,
+    siteDescription,
+    siteUrl,
+    siteContact,
+} from "../../i18n/site.ts";
+const lang = "en";
+const alternates = {
+    ar: "/ar/contact/",
+    fr: "/fr/contact/",
+    en: "/en/contact/",
+};
+---
+
+<BaseLayout
+    title={`Contact — ${siteFullName[lang]}`}
+    description={siteDescription[lang]}
+    lang={lang}
+    alternates={alternates}
+>
+    <section class="hero section-tight">
+        <div class="stack-18">
+            <h1>Contact</h1>
+            <p>
+                For general questions, administrative matters, or information
+                about upcoming workshops, please use the contact details below.
+            </p>
+            <p class="muted">
+                Additional contact details will be published as the academy
+                develops.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="grid">
+            <div class="col6 card area-card">
+                <div class="area-card-head">
+                    <Icon name="heroicons:envelope" />
+                    <h3>General Inquiries</h3>
+                </div>
+                <div class="area-card-body">
+                    <p class="muted">
+                        For questions about ASA, workshops, and general
+                        information.
+                    </p>
+                    <p>
+                        <a href={`mailto:${siteContact.emails.info}`}>
+                            {siteContact.emails.info}
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col6 card area-card">
+                <div class="area-card-head">
+                    <Icon name="heroicons:building-office" />
+                    <h3>Administration</h3>
+                </div>
+                <div class="area-card-body">
+                    <p class="muted">
+                        For administrative matters and official communication.
+                    </p>
+                    <p>
+                        <a href={`mailto:${siteContact.emails.admin}`}>
+                            {siteContact.emails.admin}
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col6 card area-card">
+                <div class="area-card-head">
+                    <Icon name="heroicons:phone" />
+                    <h3>Phone</h3>
+                </div>
+                <div class="area-card-body">
+                    <p class="muted">Contact number for the academy.</p>
+                    <p>{siteContact.phone[lang]}</p>
+                </div>
+            </div>
+
+            <div class="col6 card area-card">
+                <div class="area-card-head">
+                    <Icon name="heroicons:map-pin" />
+                    <h3>Address</h3>
+                </div>
+                <div class="area-card-body">
+                    <p class="muted">
+                        Physical location and mailing information.
+                    </p>
+                    <p>{siteContact.address[lang]}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <div class="area-card-head">
+                        <Icon name="heroicons:globe-alt" />
+                        <h3>Website</h3>
+                    </div>
+                    <p class="muted" style="margin:0;">
+                        Official online presence
+                    </p>
+                </div>
+                <p>
+                    <a href={siteUrl}>{siteUrl.replace("https://", "")}</a>
+                </p>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

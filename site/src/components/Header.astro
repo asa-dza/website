@@ -1,0 +1,67 @@
+---
+import { siteName, siteFullName, siteType } from "../i18n/site.ts";
+import { Image } from "astro:assets";
+import { nav } from "../i18n/nav.ts";
+import logo from "../assets/logo-dark.svg";
+
+interface Props {
+    lang: "ar" | "fr" | "en";
+    alternates: { ar: string; fr: string; en: string };
+}
+
+const { lang, alternates } = Astro.props;
+const isRTL = lang === "ar";
+const links = isRTL ? [...nav[lang]].reverse() : nav[lang];
+
+const langLabels: Record<string, string> = {
+    ar: "العربية",
+    fr: "Français",
+    en: "English",
+};
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class:list={{ rtl: isRTL }}>
+    <div class="wrap header-row">
+        <div class="brand">
+            <Image src={logo} alt={siteName} class="logo" />
+            <div>
+                <p>{siteFullName[lang]}</p>
+                <p>{siteType[lang]}</p>
+            </div>
+        </div>
+
+        <nav
+            aria-label="Main navigation"
+            dir={isRTL ? "rtl" : "ltr"}
+            class:list={{ rtl: isRTL }}
+        >
+            {
+                links.map((link) => (
+                    <a
+                        href={link.href}
+                        aria-current={
+                            currentPath === link.href ? "page" : undefined
+                        }
+                    >
+                        {link.label}
+                    </a>
+                ))
+            }
+        </nav>
+
+        <div class="lang" role="navigation" aria-label="Language switcher">
+            {
+                (["ar", "fr", "en"] as const).map((l) => (
+                    <button
+                        aria-pressed={lang === l}
+                        onclick={`window.location.href='${alternates[l]}'`}
+                    >
+                        {langLabels[l]}
+                    </button>
+                ))
+            }
+        </div>
+    </div>
+</header>

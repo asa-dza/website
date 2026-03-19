@@ -1,0 +1,114 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+import {
+    siteFullName,
+    siteDescription,
+    siteUrl,
+    siteContact,
+} from "../../i18n/site.ts";
+const lang = "ar";
+const alternates = {
+    ar: "/ar/contact/",
+    fr: "/fr/contact/",
+    en: "/en/contact/",
+};
+---
+
+<BaseLayout
+    title={`تواصل معنا — ${siteFullName[lang]}`}
+    description={siteDescription[lang]}
+    lang={lang}
+    alternates={alternates}
+>
+    <section class="hero section-tight">
+        <div class="stack-18">
+            <h1>تواصل معنا</h1>
+            <p>
+                للاستفسارات العامة، والشؤون الإدارية، أو الحصول على معلومات حول
+                ورش العمل القادمة، يرجى استخدام بيانات الاتصال أدناه.
+            </p>
+            <p class="muted">
+                ستُنشر معلومات اتصال إضافية تدريجيًا مع تطور الأكاديمية.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="grid">
+            <div class="col6 card area-card">
+                <div class="area-card-head">
+                    <Icon name="heroicons:envelope" />
+                    <h3>الاستفسارات العامة</h3>
+                </div>
+                <div class="area-card-body">
+                    <p class="muted">
+                        لأي سؤال يتعلق بالأكاديمية، وورش العمل، والمعلومات
+                        العامة.
+                    </p>
+                    <p>
+                        <a href={`mailto:${siteContact.emails.info}`}>
+                            {siteContact.emails.info}
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col6 card area-card">
+                <div class="area-card-head">
+                    <Icon name="heroicons:building-office" />
+                    <h3>الإدارة</h3>
+                </div>
+                <div class="area-card-body">
+                    <p class="muted">للشؤون الإدارية والمراسلات الرسمية.</p>
+                    <p>
+                        <a href={`mailto:${siteContact.emails.admin}`}>
+                            {siteContact.emails.admin}
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col6 card area-card">
+                <div class="area-card-head">
+                    <Icon name="heroicons:phone" />
+                    <h3>الهاتف</h3>
+                </div>
+                <div class="area-card-body">
+                    <p class="muted">رقم التواصل الخاص بالأكاديمية.</p>
+                    <p>{siteContact.phone[lang]}</p>
+                </div>
+            </div>
+
+            <div class="col6 card area-card">
+                <div class="area-card-head">
+                    <Icon name="heroicons:map-pin" />
+                    <h3>العنوان</h3>
+                </div>
+                <div class="area-card-body">
+                    <p class="muted">الموقع الجغرافي وعنوان المراسلة.</p>
+                    <p>{siteContact.address[lang]}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <div class="area-card-head">
+                        <Icon name="heroicons:globe-alt" />
+                        <h3>الموقع الإلكتروني</h3>
+                    </div>
+                    <p class="muted" style="margin:0;">
+                        الحضور الرسمي على الإنترنت
+                    </p>
+                </div>
+                <p>
+                    <a href={siteUrl}>{siteUrl.replace("https://", "")}</a>
+                </p>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

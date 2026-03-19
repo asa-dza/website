@@ -1,0 +1,357 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteFullName, siteDescription, siteTagline } from "../../i18n/site.ts";
+
+const lang = "ar";
+const alternates = { ar: "/ar/", fr: "/fr/", en: "/en/" };
+
+import Carousel from "../../components/Carousel.astro";
+import medecine from "../../assets/images/medecine.jpg";
+import dentistry from "../../assets/images/dentistry.jpg";
+import aiNetwork from "../../assets/images/AI-neural-network.jpg";
+import programming from "../../assets/images/programming.jpg";
+import academic from "../../assets/images/academic.jpg";
+import softSkills from "../../assets/images/soft-skills.jpg";
+
+const carouselSlides = [
+    {
+        image: medecine,
+        alt: "ورشات الطب",
+        title: "الطب",
+        subtitle:
+            "ورشات متخصصة لدعم التطوير المهني المستمر والارتقاء بالكفاءات السريرية.",
+    },
+    {
+        image: dentistry,
+        alt: "ورشات طب الأسنان",
+        title: "طب الأسنان",
+        subtitle:
+            "تطوير موجّه نحو الممارسة، مصمم للنمو المهني والتعلم التطبيقي في طب الأسنان.",
+    },
+    {
+        image: aiNetwork,
+        alt: "ورشات الذكاء الاصطناعي",
+        title: "الذكاء الاصطناعي",
+        subtitle:
+            "ورشات تغطي أسس الذكاء الاصطناعي وتطبيقاته، مدعومة بأدوات تعلم رقمية حديثة.",
+    },
+    {
+        image: programming,
+        alt: "ورشات البرمجة",
+        title: "البرمجة",
+        subtitle:
+            "تعلم منظم في تطوير البرمجيات والتفكير الحسابي وحل المشكلات التقنية.",
+    },
+    {
+        image: academic,
+        alt: "ورشات الدعم الأكاديمي",
+        title: "الدعم الأكاديمي",
+        subtitle:
+            "مرافقة جامعية مصممة لتعزيز الأداء الأكاديمي والتحضير وأساليب العمل.",
+    },
+    {
+        image: softSkills,
+        alt: "ورشات المهارات المهنية",
+        title: "المهارات المهنية",
+        subtitle:
+            "ورشات في التواصل والعمل الجماعي والكفاءات الأساسية للفاعلية المهنية.",
+    },
+];
+
+import aiField from "../../assets/images/ai-field.png";
+import medicineField from "../../assets/images/medecine-field.png";
+import dentistryField from "../../assets/images/dentistry-field.png";
+import programmingField from "../../assets/images/programming-field.png";
+import academicSupportField from "../../assets/images/academic-support-field.png";
+import softSkillsField from "../../assets/images/soft-skills-field.png";
+
+import expertLed from "../../assets/images/expert-led.png";
+import focus from "../../assets/images/focus.png";
+import microlearning from "../../assets/images/microlearning.png";
+import portfolio from "../../assets/images/portfolio.png";
+---
+
+<BaseLayout
+    title={siteFullName[lang]}
+    description={siteDescription[lang]}
+    lang={lang}
+    alternates={alternates}
+>
+    <!-- Hero -->
+    <section class="hero section-tight">
+        <div class="stack-26">
+            <div class="pill">
+                <span class="dot"></span>
+                <span>أولى الورشات قادمة قريباً</span>
+            </div>
+
+            <div class="stack-18">
+                <h2>
+                    ورشات متقدمة في الذكاء الاصطناعي، الصحة، البرمجة، والمهارات
+                    المهنية.
+                </h2>
+                <p class="muted" style="margin:0; font-size:1rem;">
+                    {siteTagline[lang]}
+                </p>
+                <p>
+                    ASA مركز للتطوير المهني في الجزائر، يقدم ورشات مركّزة مصممة
+                    لاكتساب مهارات عملية بمستوى أكاديمي رفيع وأثر ميداني ملموس.
+                </p>
+                <div class="btns">
+                    <a class="btn primary" href="/ar/workshops/"
+                        >استعراض الورشات</a
+                    >
+                    <a class="btn" href="/ar/about/">اكتشف ASA</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Focus areas carousel -->
+    <section class="section" aria-labelledby="home-highlights">
+        <div class="stack-18">
+            <div>
+                <h3 id="home-highlights" style="margin:0 0 6px;">
+                    مجالات التخصص
+                </h3>
+                <p class="muted" style="margin:0;">
+                    تتمحور ورشات ASA حول مجالات مهنية وأكاديمية مختارة بعناية.
+                </p>
+            </div>
+            <Carousel slides={carouselSlides} label="عرض مجالات تخصص ASA" />
+        </div>
+    </section>
+
+    <!-- Areas of training -->
+    <!-- مجالات التطوير -->
+    <section class="section" id="areas" aria-labelledby="areas-title">
+        <div class="stack-18">
+            <div>
+                <h3 id="areas-title" style="margin:0 0 6px;">مجالات التطوير</h3>
+                <p class="muted" style="margin:0;">
+                    تركّز أكاديمية ASA على مجالات ذات قيمة عالية تدعم التطوير
+                    المهني والنمو الأكاديمي والكفاءة العملية.
+                </p>
+            </div>
+
+            <div class="grid">
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img src={aiField.src} alt="الذكاء الاصطناعي" />
+                        <h3>الذكاء الاصطناعي</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            الذكاء الاصطناعي التطبيقي والتعلم الآلي والأدوات
+                            الرقمية الحديثة للمتعلمين والمهنيين.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img src={medicineField.src} alt="الطب" />
+                        <h3>الطب</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            ورشات ذات صلة سريرية لدعم التطوير المهني المستمر
+                            والتخصص الموجّه.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img src={dentistryField.src} alt="طب الأسنان" />
+                        <h3>طب الأسنان</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            تدريب موجّه نحو الممارسة، مصمَّم للنمو المهني
+                            والتعلم التطبيقي في مجال طب الأسنان.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img src={programmingField.src} alt="البرمجة" />
+                        <h3>البرمجة</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            تطوير البرمجيات العملي والتفكير الحسابي ومهارات حل
+                            المشكلات التقنية.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img
+                            src={academicSupportField.src}
+                            alt="الدعم الأكاديمي"
+                        />
+                        <h3>الدعم الأكاديمي</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            دعم منظَّم للتعلم الجامعي والتحضير للامتحانات وتحسين
+                            الأداء الأكاديمي.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img src={softSkillsField.src} alt="المهارات الشخصية" />
+                        <h3>المهارات الشخصية</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            التواصل والعمل الجماعي والكفاءات الأساسية للفعالية
+                            المهنية.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why choose ASA -->
+    <section class="section" aria-labelledby="why-title">
+        <div class="stack-18">
+            <div>
+                <h3 id="why-title" style="margin:0 0 6px;">لماذا تختار ASA</h3>
+                <p class="muted" style="margin:0;">
+                    نموذج ورشات مصمم للتركيز والجودة والأثر المهني.
+                </p>
+            </div>
+
+            <div class="grid">
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>بإشراف خبراء</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <img
+                            src={expertLed.src}
+                            alt=""
+                            class="feature-illustration"
+                            loading="lazy"
+                        />
+                        <p>
+                            تُقدَّم الورشات من قِبَل مدرّبين يمتلكون تحضيراً
+                            أكاديمياً متيناً وخبرة عملية في مجالاتهم.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>صيغة مركّزة</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <img
+                            src={focus.src}
+                            alt=""
+                            class="feature-illustration"
+                            loading="lazy"
+                        />
+                        <p>
+                            تعتمد ASA على تجارب تعلم قصيرة ومكثفة، مبنية حول
+                            أهداف واضحة ونتائج ملموسة.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>نهج التعلم المجزّأ</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <img
+                            src={microlearning.src}
+                            alt=""
+                            class="feature-illustration"
+                            loading="lazy"
+                        />
+                        <p>
+                            يُنظَّم التعلم في وحدات قابلة للإدارة تساعدك على
+                            التقدم بانتظام، والاستيعاب أكثر، والتكيف مع جدول
+                            مشغول.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>بناء ملف الأعمال</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <img
+                            src={portfolio.src}
+                            alt=""
+                            class="feature-illustration"
+                            loading="lazy"
+                        />
+                        <p>
+                            تم تصميم بعض الورشات لمساعدتك على إنتاج مخرجات
+                            ملموسة ومشاريع وأعمال موثقة تعزز ملفك الأكاديمي أو
+                            المهني.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credibility / participant-facing commitment -->
+    <section class="section" aria-labelledby="expect-title">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3 id="expect-title">ماذا تتوقع</h3>
+                    <p class="muted" style="margin:0;">
+                        تُبنى ASA بجدية أكاديمية وتوجه راسخ نحو القيمة العملية.
+                    </p>
+                </div>
+
+                <p>
+                    يمكنك توقع أهداف تعلم واضحة، تعليم مركّز، وصيغ ورشات مصممة
+                    لمنحك معرفة ومهارات قابلة للتطبيق فوراً. وعند الاقتضاء،
+                    ستدعم الورشات أيضاً بناء ملف الأعمال من خلال تمارين موجّهة
+                    ومشاريع ومخرجات قابلة للإثبات.
+                </p>
+
+                <p>
+                    ستُعلَن أولى ورشات ASA تدريجياً، مع نشر تفاصيل المواعيد
+                    والصيغ والمدرّبين وإجراءات التسجيل على صفحة الورشات.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section" id="contact" aria-labelledby="final-cta-title">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3 id="final-cta-title">اكتشف الورشات القادمة في ASA</h3>
+                    <p class="muted" style="margin:0;">
+                        استعرض مجالات الورشات، تابع الإعلانات القادمة، أو تواصل
+                        معنا لأي استفسار.
+                    </p>
+                </div>
+
+                <div class="btns">
+                    <a class="btn primary" href="/ar/workshops/"
+                        >استعراض الورشات</a
+                    >
+                    <a class="btn" href="/ar/contact/">تواصل مع ASA</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

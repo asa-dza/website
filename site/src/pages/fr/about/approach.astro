@@ -1,0 +1,194 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { siteFullName, siteDescription } from "../../../i18n/site.ts";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+
+const lang = "fr";
+const alternates = {
+    ar: "/ar/about/approach/",
+    fr: "/fr/about/approach/",
+    en: "/en/about/approach/",
+};
+---
+
+<BaseLayout
+    title={siteFullName[lang]}
+    description={siteDescription[lang]}
+    lang={lang}
+    alternates={alternates}
+>
+    <Breadcrumb
+        items={[
+            { label: "Accueil", href: "/fr/" },
+            { label: "À propos", href: "/fr/about/" },
+            { label: "Approche pédagogique" },
+        ]}
+    />
+
+    <!-- Page intro -->
+    <section class="hero section-tight">
+        <div class="stack-18">
+            <h1>Approche pédagogique</h1>
+
+            <p>
+                ASA conçoit des expériences d'apprentissage pensées pour
+                répondre aux besoins évolutifs des environnements professionnels
+                modernes. Notre approche met l'accent sur la structure, la
+                clarté des objectifs et un alignement fort entre les activités
+                d'apprentissage et les compétences du terrain.
+            </p>
+
+            <p class="muted">
+                Les ateliers sont conçus pour offrir des expériences
+                d'apprentissage ciblées alliant rigueur académique, application
+                pratique et appui technologique moderne.
+            </p>
+        </div>
+    </section>
+
+    <!-- Structured learning -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>Conception structurée de l'apprentissage</h3>
+                    <p class="muted" style="margin:0;">
+                        Objectifs clairs et progression organisée
+                    </p>
+                </div>
+
+                <p>
+                    De nombreuses initiatives de développement reposent sur des
+                    séances peu structurées, centrées principalement sur la
+                    transmission d'informations. Les ateliers ASA sont au
+                    contraire conçus comme des unités d'apprentissage
+                    structurées, articulées autour d'objectifs clairement
+                    définis et d'une progression logique.
+                </p>
+
+                <p>
+                    Chaque atelier vise à guider les participants à travers une
+                    séquence cohérente de concepts, de démonstrations et
+                    d'activités pratiques favorisant un développement de
+                    compétences réel et durable.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Targeted learning -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>Ciblage précis du public</h3>
+                    <p class="muted" style="margin:0;">
+                        Des programmes conçus pour des apprenants spécifiques
+                    </p>
+                </div>
+
+                <p>
+                    Un apprentissage efficace repose sur une compréhension
+                    claire du public auquel le programme s'adresse. Les ateliers
+                    ASA définissent avec soin leur audience cible, qu'il
+                    s'agisse d'étudiants, de professionnels en début de carrière
+                    ou de praticiens expérimentés.
+                </p>
+
+                <p>
+                    Cette approche ciblée permet à chaque atelier de se
+                    concentrer sur les connaissances et compétences les plus
+                    pertinentes pour chaque groupe.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market relevance -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>Alignement avec les besoins professionnels</h3>
+                    <p class="muted" style="margin:0;">
+                        Relier l'apprentissage aux exigences du terrain
+                    </p>
+                </div>
+
+                <p>
+                    ASA veille à ce que ses programmes reflètent les réalités
+                    professionnelles actuelles. Les ateliers sont élaborés en
+                    tenant compte des évolutions sectorielles, des tendances
+                    technologiques et des champs d'expertise émergents.
+                </p>
+
+                <p>
+                    En alignant les objectifs d'apprentissage sur des contextes
+                    professionnels concrets, l'académie vise à fournir des
+                    compétences directement applicables dans les environnements
+                    académiques et professionnels.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology integration -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>Apprentissage soutenu par la technologie</h3>
+                    <p class="muted" style="margin:0;">
+                        Outils modernes et environnements numériques
+                    </p>
+                </div>
+
+                <p>
+                    L'apprentissage contemporain s'appuie de plus en plus sur
+                    des infrastructures numériques et des outils informatiques.
+                    Les ateliers ASA sont appuyés par des environnements
+                    technologiques modernes qui favorisent l'expérimentation,
+                    l'apprentissage interactif et l'accès à des ressources
+                    avancées.
+                </p>
+
+                <p>
+                    Une attention particulière est accordée au rôle de
+                    l'intelligence artificielle et des technologies numériques
+                    dans la transformation des pratiques professionnelles
+                    futures.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Focused format -->
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3>Format d'atelier concentré</h3>
+                    <p class="muted" style="margin:0;">
+                        Profondeur et résultats mesurables
+                    </p>
+                </div>
+
+                <p>
+                    ASA privilégie des formats d'ateliers intensifs qui
+                    permettent aux apprenants de s'immerger pleinement dans un
+                    sujet sur une durée limitée et maîtrisable. Ce modèle
+                    favorise un apprentissage concentré tout en restant
+                    compatible avec des emplois du temps professionnels et
+                    académiques chargés.
+                </p>
+
+                <p>
+                    Lorsque cela est pertinent, les ateliers intègrent des
+                    exercices, des démonstrations et des activités fondées sur
+                    des projets, conçus pour traduire les connaissances en
+                    compétences concrètes.
+                </p>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

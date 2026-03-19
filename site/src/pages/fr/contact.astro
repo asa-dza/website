@@ -1,0 +1,119 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+import {
+    siteFullName,
+    siteDescription,
+    siteUrl,
+    siteContact,
+} from "../../i18n/site.ts";
+const lang = "fr";
+const alternates = {
+    ar: "/ar/contact/",
+    fr: "/fr/contact/",
+    en: "/en/contact/",
+};
+---
+
+<BaseLayout
+    title={`Contact — ${siteFullName[lang]}`}
+    description={siteDescription[lang]}
+    lang={lang}
+    alternates={alternates}
+>
+    <section class="hero section-tight">
+        <div class="stack-18">
+            <h1>Contact</h1>
+            <p>
+                Pour toute question générale, démarche administrative ou
+                information sur les ateliers à venir, veuillez utiliser les
+                coordonnées ci-dessous.
+            </p>
+            <p class="muted">
+                Des informations de contact supplémentaires seront publiées au
+                fur et à mesure du développement de l'académie.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="grid">
+            <div class="col6 card area-card">
+                <div class="area-card-head">
+                    <Icon name="heroicons:envelope" />
+                    <h3>Renseignements généraux</h3>
+                </div>
+                <div class="area-card-body">
+                    <p class="muted">
+                        Pour toute question concernant l'ASA, les ateliers et
+                        les informations générales.
+                    </p>
+                    <p>
+                        <a href={`mailto:${siteContact.emails.info}`}>
+                            {siteContact.emails.info}
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col6 card area-card">
+                <div class="area-card-head">
+                    <Icon name="heroicons:building-office" />
+                    <h3>Administration</h3>
+                </div>
+                <div class="area-card-body">
+                    <p class="muted">
+                        Pour les démarches administratives et les communications
+                        officielles.
+                    </p>
+                    <p>
+                        <a href={`mailto:${siteContact.emails.admin}`}>
+                            {siteContact.emails.admin}
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col6 card area-card">
+                <div class="area-card-head">
+                    <Icon name="heroicons:phone" />
+                    <h3>Téléphone</h3>
+                </div>
+                <div class="area-card-body">
+                    <p class="muted">Numéro de contact de l'académie.</p>
+                    <p>{siteContact.phone[lang]}</p>
+                </div>
+            </div>
+
+            <div class="col6 card area-card">
+                <div class="area-card-head">
+                    <Icon name="heroicons:map-pin" />
+                    <h3>Adresse</h3>
+                </div>
+                <div class="area-card-body">
+                    <p class="muted">Localisation et adresse postale.</p>
+                    <p>{siteContact.address[lang]}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <div class="area-card-head">
+                        <Icon name="heroicons:globe-alt" />
+                        <h3>Site web</h3>
+                    </div>
+                    <p class="muted" style="margin:0;">
+                        Présence officielle en ligne
+                    </p>
+                </div>
+                <p>
+                    <a href={siteUrl}>{siteUrl.replace("https://", "")}</a>
+                </p>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

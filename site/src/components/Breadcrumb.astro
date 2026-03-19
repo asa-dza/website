@@ -1,0 +1,51 @@
+---
+interface BreadcrumbItem {
+    label: string;
+    href?: string;
+}
+interface Props {
+    items: BreadcrumbItem[];
+    dir?: "ltr" | "rtl";
+}
+const { items, dir = "ltr" } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="breadcrumb" dir={dir}>
+    <ol>
+        {
+            items.map((item, index) => {
+                const isLast = index === items.length - 1;
+                return (
+                    <li>
+                        {isLast ? (
+                            <span aria-current="page">{item.label}</span>
+                        ) : (
+                            <a href={item.href}>{item.label}</a>
+                        )}
+                        {!isLast && (
+                            <span class="sep" aria-hidden="true">
+                                ›
+                            </span>
+                        )}
+                    </li>
+                );
+            })
+        }
+    </ol>
+</nav>
+
+<style>
+    .breadcrumb ol {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Flip the › separator automatically in RTL */
+    .breadcrumb[dir="rtl"] .sep {
+        display: inline-block;
+        transform: scaleX(-1);
+    }
+</style>

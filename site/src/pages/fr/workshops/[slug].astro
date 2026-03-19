@@ -1,0 +1,301 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import {
+    getAllWorkshops,
+    getWorkshopDeliveryFormatLabel,
+    getWorkshopRegistrationStatusLabel,
+    getWorkshopDeliveryStatusLabel,
+    getWorkshopDeliveryLanguageLabel,
+} from "../../../lib/workshops";
+
+export async function getStaticPaths() {
+    const workshops = await getAllWorkshops();
+
+    return workshops.map((workshop) => ({
+        params: { slug: workshop.slug },
+        props: { workshop },
+    }));
+}
+
+const { workshop } = Astro.props;
+const lang = "fr";
+const t = workshop.t[lang];
+const alternates = {
+    ar: `/ar/workshops/${workshop.slug}/`,
+    fr: `/fr/workshops/${workshop.slug}/`,
+    en: `/en/workshops/${workshop.slug}/`,
+};
+
+function getInstructorInitials(name: string) {
+    return name
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean)
+        .map((part) => `${part[0].toUpperCase()}.`)
+        .join(" ");
+}
+---
+
+<BaseLayout
+    title={`${t.title} — ASA`}
+    description={t.summary}
+    {lang}
+    alternates={alternates}
+>
+    <Breadcrumb
+        items={[
+            { label: "Accueil", href: "/fr/" },
+            { label: "Ateliers", href: "/fr/workshops/" },
+            { label: t.title },
+        ]}
+    />
+
+    <article class="section-tight stack-26">
+        <div class="stack-18">
+            <div class="pill">
+                <span>{t.title}</span>
+            </div>
+
+            <div class="hero-card stack-18">
+                {
+                    t.image?.src && (
+                        <div class="workshop-poster-wrap">
+                            <img
+                                src={t.image.src}
+                                alt={t.image.alt ?? t.title}
+                                class="workshop-poster"
+                                loading="eager"
+                            />
+                        </div>
+                    )
+                }
+
+                <div class="pill-row">
+                    <span class="pill">
+                        {
+                            getWorkshopDeliveryFormatLabel(
+                                lang,
+                                workshop.deliveryFormat,
+                            )
+                        }
+                    </span>
+                    <span class="pill">
+                        {
+                            getWorkshopRegistrationStatusLabel(
+                                lang,
+                                workshop.registrationStatus,
+                            )
+                        }
+                    </span>
+                    <span class="pill">
+                        {
+                            getWorkshopDeliveryStatusLabel(
+                                lang,
+                                workshop.deliveryStatus,
+                            )
+                        }
+                    </span>
+                </div>
+
+                <div>
+                    <h1>{t.title}</h1>
+                    <p class="lead">{t.summary}</p>
+                </div>
+
+                <div class="meta-row">
+                    <span>{workshop.startAt}</span>
+                    <span>
+                        {
+                            workshop.deliveryLanguages
+                                .map((language) =>
+                                    getWorkshopDeliveryLanguageLabel(
+                                        lang,
+                                        language,
+                                    ),
+                                )
+                                .join(", ")
+                        }
+                    </span>
+                    {t.venue && <span>{t.venue}</span>}
+                </div>
+
+                {
+                    workshop.registrationUrl && (
+                        <div class="btns">
+                            <a
+                                class="btn primary"
+                                href={workshop.registrationUrl}
+                            >
+                                S'inscrire
+                            </a>
+                        </div>
+                    )
+                }
+            </div>
+
+            <p>{t.description}</p>
+        </div>
+
+        {
+            (t.outcomes?.length ?? 0) > 0 && (
+                <div class="card stack-18">
+                    <h3>Ce que vous apprendrez</h3>
+                    <ul>
+                        {t.outcomes?.map((outcome) => (
+                            <li>{outcome}</li>
+                        ))}
+                    </ul>
+                </div>
+            )
+        }
+
+        <div class="card stack-18">
+            <h3>Détails de l'atelier</h3>
+
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <span class="fact-label">Format</span>
+                    <strong>
+                        {
+                            getWorkshopDeliveryFormatLabel(
+                                lang,
+                                workshop.deliveryFormat,
+                            )
+                        }
+                    </strong>
+                </div>
+
+                <div class="fact-card">
+                    <span class="fact-label">Inscription</span>
+                    <strong>
+                        {
+                            getWorkshopRegistrationStatusLabel(
+                                lang,
+                                workshop.registrationStatus,
+                            )
+                        }
+                    </strong>
+                </div>
+
+                <div class="fact-card">
+                    <span class="fact-label">Statut</span>
+                    <strong>
+                        {
+                            getWorkshopDeliveryStatusLabel(
+                                lang,
+                                workshop.deliveryStatus,
+                            )
+                        }
+                    </strong>
+                </div>
+
+                <div class="fact-card">
+                    <span class="fact-label">Langues</span>
+                    <strong>
+                        {
+                            workshop.deliveryLanguages
+                                .map((language) =>
+                                    getWorkshopDeliveryLanguageLabel(
+                                        lang,
+                                        language,
+                                    ),
+                                )
+                                .join(", ")
+                        }
+                    </strong>
+                </div>
+
+                <div class="fact-card">
+                    <span class="fact-label">Début</span>
+                    <strong>{workshop.startAt}</strong>
+                </div>
+
+                {
+                    workshop.endAt && (
+                        <div class="fact-card">
+                            <span class="fact-label">Fin</span>
+                            <strong>{workshop.endAt}</strong>
+                        </div>
+                    )
+                }
+
+                {
+                    t.venue && (
+                        <div class="fact-card">
+                            <span class="fact-label">Lieu</span>
+                            <strong>{t.venue}</strong>
+                        </div>
+                    )
+                }
+            </div>
+        </div>
+
+        {
+            (t.instructors?.length ?? 0) > 0 && (
+                <div class="card stack-18">
+                    <h3>Formateurs</h3>
+
+                    <div class="instructors-grid">
+                        {t.instructors!.map((instructor) => (
+                            <div class="instructor-card">
+                                {instructor.photo?.src ? (
+                                    <img
+                                        src={instructor.photo.src}
+                                        alt={
+                                            instructor.photo.alt ??
+                                            instructor.name
+                                        }
+                                        class="instructor-photo"
+                                        loading="lazy"
+                                    />
+                                ) : (
+                                    <div
+                                        class="instructor-photo placeholder"
+                                        aria-hidden="true"
+                                    >
+                                        <span>
+                                            {getInstructorInitials(
+                                                instructor.name,
+                                            )}
+                                        </span>
+                                    </div>
+                                )}
+
+                                <div class="stack-10">
+                                    <div>
+                                        <strong>
+                                            {instructor.honorific &&
+                                                `${instructor.honorific} `}
+                                            {instructor.name}
+                                        </strong>
+                                        {instructor.role && (
+                                            <p class="muted">
+                                                {instructor.role}
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    {instructor.biography && (
+                                        <p>{instructor.biography}</p>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )
+        }
+
+        <div class="btns">
+            {
+                workshop.registrationUrl && (
+                    <a class="btn primary" href={workshop.registrationUrl}>
+                        S'inscrire
+                    </a>
+                )
+            }
+            <a class="btn" href="/fr/workshops/">← Tous les ateliers</a>
+        </div>
+    </article>
+</BaseLayout>

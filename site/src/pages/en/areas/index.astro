@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getLocalizedAreas } from "../../../data/areas";
+import { Image } from "astro:assets";
+
+const lang = "en";
+const alternates = { ar: "/ar/areas/", fr: "/fr/areas/", en: "/en/areas/" };
+const areas = getLocalizedAreas(lang);
+---
+
+<BaseLayout title="Areas — ASA" {lang} alternates={alternates}>
+    <section class="section-tight">
+        <div>
+            <h2>Areas We Cover</h2>
+            <p class="muted">Explore the fields our academy specializes in.</p>
+        </div>
+
+        <div class="areas-grid">
+            {
+                areas.map((area) => (
+                    <a href={`/en/areas/${area.slug}/`} class="area-card">
+                        <div class="icon">
+                            <Image
+                                src={area.icon}
+                                alt={area.title}
+                                width={100}
+                                height={100}
+                            />
+                        </div>
+
+                        <h2>{area.title}</h2>
+                        <p class="muted">{area.tagline}</p>
+
+                        <ul class="topics">
+                            {area.topics.map((topic) => (
+                                <li>{topic}</li>
+                            ))}
+                        </ul>
+
+                        <span class="cta">Learn more →</span>
+                    </a>
+                ))
+            }
+        </div>
+    </section>
+</BaseLayout>

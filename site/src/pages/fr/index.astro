@@ -1,0 +1,390 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteFullName, siteDescription, siteTagline } from "../../i18n/site.ts";
+
+const lang = "fr";
+const alternates = { ar: "/ar/", fr: "/fr/", en: "/en/" };
+
+import Carousel from "../../components/Carousel.astro";
+import medecine from "../../assets/images/medecine.jpg";
+import dentistry from "../../assets/images/dentistry.jpg";
+import aiNetwork from "../../assets/images/AI-neural-network.jpg";
+import programming from "../../assets/images/programming.jpg";
+import academic from "../../assets/images/academic.jpg";
+import softSkills from "../../assets/images/soft-skills.jpg";
+
+const carouselSlides = [
+    {
+        image: medecine,
+        alt: "Ateliers de médecine",
+        title: "Médecine",
+        subtitle:
+            "Ateliers ciblés pour le développement professionnel continu et la mise à niveau clinique.",
+    },
+    {
+        image: dentistry,
+        alt: "Ateliers de dentisterie",
+        title: "Dentisterie",
+        subtitle:
+            "Perfectionnement orienté pratique, conçu pour la croissance professionnelle et l'apprentissage appliqué en dentisterie.",
+    },
+    {
+        image: aiNetwork,
+        alt: "Ateliers d'intelligence artificielle",
+        title: "Intelligence Artificielle",
+        subtitle:
+            "Ateliers couvrant les fondements et les applications de l'IA, appuyés par des outils pédagogiques numériques modernes.",
+    },
+    {
+        image: programming,
+        alt: "Ateliers de programmation",
+        title: "Programmation",
+        subtitle:
+            "Apprentissage structuré du développement logiciel, de la pensée computationnelle et de la résolution de problèmes.",
+    },
+    {
+        image: academic,
+        alt: "Ateliers de soutien académique",
+        title: "Soutien Académique",
+        subtitle:
+            "Accompagnement universitaire conçu pour renforcer la performance, la préparation et les méthodes de travail.",
+    },
+    {
+        image: softSkills,
+        alt: "Ateliers de compétences professionnelles",
+        title: "Compétences Professionnelles",
+        subtitle:
+            "Ateliers en communication, travail d'équipe et autres compétences essentielles à l'efficacité professionnelle.",
+    },
+];
+
+import aiField from "../../assets/images/ai-field.png";
+import medicineField from "../../assets/images/medecine-field.png";
+import dentistryField from "../../assets/images/dentistry-field.png";
+import programmingField from "../../assets/images/programming-field.png";
+import academicSupportField from "../../assets/images/academic-support-field.png";
+import softSkillsField from "../../assets/images/soft-skills-field.png";
+
+import expertLed from "../../assets/images/expert-led.png";
+import focus from "../../assets/images/focus.png";
+import microlearning from "../../assets/images/microlearning.png";
+import portfolio from "../../assets/images/portfolio.png";
+---
+
+<BaseLayout
+    title={siteFullName[lang]}
+    description={siteDescription[lang]}
+    lang={lang}
+    alternates={alternates}
+>
+    <!-- Hero -->
+    <section class="hero section-tight">
+        <div class="stack-26">
+            <div class="pill">
+                <span class="dot"></span>
+                <span>Premiers ateliers bientôt disponibles</span>
+            </div>
+
+            <div class="stack-18">
+                <h2>
+                    Ateliers avancés en IA, santé, programmation et compétences
+                    professionnelles.
+                </h2>
+                <p class="muted" style="margin:0; font-size:1rem;">
+                    {siteTagline[lang]}
+                </p>
+                <p>
+                    ASA est un centre de développement professionnel en Algérie,
+                    proposant des ateliers ciblés axés sur les compétences
+                    pratiques, la rigueur académique et la pertinence terrain.
+                </p>
+                <div class="btns">
+                    <a class="btn primary" href="/fr/workshops/"
+                        >Voir les ateliers</a
+                    >
+                    <a class="btn" href="/fr/about/">Découvrir ASA</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Focus areas carousel -->
+    <section class="section" aria-labelledby="home-highlights">
+        <div class="stack-18">
+            <div>
+                <h3 id="home-highlights" style="margin:0 0 6px;">
+                    Domaines de spécialisation
+                </h3>
+                <p class="muted" style="margin:0;">
+                    Les ateliers d'ASA sont organisés autour de domaines
+                    professionnels et académiques soigneusement sélectionnés.
+                </p>
+            </div>
+            <Carousel
+                slides={carouselSlides}
+                label="Carousel des domaines de spécialisation ASA"
+            />
+        </div>
+    </section>
+
+    <!-- Areas of training -->
+    <!-- Domaines de développement -->
+    <section class="section" id="areas" aria-labelledby="areas-title">
+        <div class="stack-18">
+            <div>
+                <h3 id="areas-title" style="margin:0 0 6px;">
+                    Domaines de développement
+                </h3>
+                <p class="muted" style="margin:0;">
+                    ASA se concentre sur des domaines à forte valeur ajoutée qui
+                    soutiennent le développement professionnel, l'épanouissement
+                    académique et la compétence pratique.
+                </p>
+            </div>
+
+            <div class="grid">
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img
+                            src={aiField.src}
+                            alt="Intelligence Artificielle"
+                        />
+                        <h3>Intelligence Artificielle</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            IA appliquée, apprentissage automatique et outils
+                            numériques modernes pour les apprenants et les
+                            professionnels.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img src={medicineField.src} alt="Médecine" />
+                        <h3>Médecine</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            Ateliers cliniquement pertinents pour le
+                            développement professionnel continu et la montée en
+                            compétences ciblée.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img src={dentistryField.src} alt="Dentisterie" />
+                        <h3>Dentisterie</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            Formation axée sur la pratique, conçue pour la
+                            croissance professionnelle et l'apprentissage
+                            appliqué en dentisterie.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img src={programmingField.src} alt="Programmation" />
+                        <h3>Programmation</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            Développement logiciel pratique, pensée
+                            computationnelle et compétences techniques en
+                            résolution de problèmes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img
+                            src={academicSupportField.src}
+                            alt="Soutien Académique"
+                        />
+                        <h3>Soutien Académique</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            Accompagnement structuré pour l'apprentissage
+                            universitaire, la préparation aux examens et la
+                            performance académique.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <img
+                            src={softSkillsField.src}
+                            alt="Compétences Transversales"
+                        />
+                        <h3>Compétences Transversales</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <p class="muted">
+                            Communication, travail en équipe et compétences
+                            essentielles pour l'efficacité professionnelle.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Why choose ASA -->
+    <section class="section" aria-labelledby="why-title">
+        <div class="stack-18">
+            <div>
+                <h3 id="why-title" style="margin:0 0 6px;">
+                    Pourquoi choisir ASA
+                </h3>
+                <p class="muted" style="margin:0;">
+                    Un modèle d'ateliers conçu pour la concentration, la qualité
+                    et la pertinence professionnelle.
+                </p>
+            </div>
+
+            <div class="grid">
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>Animé par des experts</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <img
+                            src={expertLed.src}
+                            alt=""
+                            class="feature-illustration"
+                            loading="lazy"
+                        />
+                        <p>
+                            Les ateliers sont animés par des formateurs dotés
+                            d'une solide préparation académique et d'une
+                            expérience pratique dans leur domaine.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>Format ciblé</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <img
+                            src={focus.src}
+                            alt=""
+                            class="feature-illustration"
+                            loading="lazy"
+                        />
+                        <p>
+                            ASA mise sur des expériences d'apprentissage courtes
+                            et intensives, structurées autour d'objectifs clairs
+                            et de résultats concrets.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>Approche microlearning</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <img
+                            src={microlearning.src}
+                            alt=""
+                            class="feature-illustration"
+                            loading="lazy"
+                        />
+                        <p>
+                            L'apprentissage est découpé en unités accessibles
+                            qui permettent de progresser régulièrement, de mieux
+                            retenir et de s'intégrer à un emploi du temps
+                            chargé.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col6 card area-card">
+                    <div class="area-card-head">
+                        <h3>Constitution de portfolio</h3>
+                    </div>
+                    <div class="area-card-body">
+                        <img
+                            src={portfolio.src}
+                            alt=""
+                            class="feature-illustration"
+                            loading="lazy"
+                        />
+                        <p>
+                            Certains ateliers sont conçus pour vous aider à
+                            produire des livrables concrets, des projets ou des
+                            travaux documentés qui enrichissent votre portfolio
+                            académique ou professionnel.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credibility / participant-facing commitment -->
+    <section class="section" aria-labelledby="expect-title">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3 id="expect-title">Ce que vous pouvez attendre</h3>
+                    <p class="muted" style="margin:0;">
+                        ASA est développé avec rigueur académique et une forte
+                        orientation vers la valeur pratique.
+                    </p>
+                </div>
+
+                <p>
+                    Vous pouvez vous attendre à des objectifs d'apprentissage
+                    clairs, une instruction ciblée et des formats d'ateliers
+                    conçus pour vous donner des connaissances et des compétences
+                    applicables immédiatement. Le cas échéant, les ateliers
+                    soutiendront également la constitution de portfolio à
+                    travers des exercices guidés, des projets ou des productions
+                    concrètes.
+                </p>
+
+                <p>
+                    Les premiers ateliers d'ASA seront annoncés progressivement,
+                    avec les détails sur les dates, formats, formateurs et
+                    modalités d'inscription publiés sur la page des ateliers.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section" id="contact" aria-labelledby="final-cta-title">
+        <div class="card">
+            <div class="stack-18">
+                <div>
+                    <h3 id="final-cta-title">
+                        Découvrez les prochains ateliers ASA
+                    </h3>
+                    <p class="muted" style="margin:0;">
+                        Explorez les domaines d'ateliers, suivez les prochaines
+                        annonces ou contactez-nous pour toute demande
+                        d'information.
+                    </p>
+                </div>
+
+                <div class="btns">
+                    <a class="btn primary" href="/fr/workshops/"
+                        >Voir les ateliers</a
+                    >
+                    <a class="btn" href="/fr/contact/">Contacter ASA</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import {
+    getAllWorkshops,
+    getWorkshopDeliveryFormatLabel,
+    getWorkshopRegistrationStatusLabel,
+    getWorkshopDeliveryStatusLabel,
+} from "../../../lib/workshops";
+
+const lang = "en";
+const alternates = {
+    ar: "/ar/workshops/",
+    fr: "/fr/workshops/",
+    en: "/en/workshops/",
+};
+
+const workshops = await getAllWorkshops();
+---
+
+<BaseLayout title="Workshops — ASA" {lang} alternates={alternates}>
+    <section class="section-tight">
+        <div>
+            <h1>Workshops</h1>
+            <p class="muted">
+                Explore our upcoming learning opportunities across key academic
+                and professional areas.
+            </p>
+        </div>
+
+        <div class="workshops-grid">
+            {
+                workshops.map((workshop) => {
+                    const t = workshop.t[lang];
+
+                    return (
+                        <div class="workshop-item">
+                            <a
+                                href={`/en/workshops/${workshop.slug}/`}
+                                class={`workshop-card ${t.image?.src ? "has-poster" : ""}`}
+                            >
+                                <div class="workshop-card-main">
+                                    <h2>{t.title}</h2>
+                                    <p class="muted">{t.summary}</p>
+
+                                    <div class="meta">
+                                        <span>{workshop.startAt}</span>
+                                        <span>
+                                            {getWorkshopDeliveryFormatLabel(
+                                                lang,
+                                                workshop.deliveryFormat,
+                                            )}
+                                        </span>
+                                        <span>
+                                            {getWorkshopRegistrationStatusLabel(
+                                                lang,
+                                                workshop.registrationStatus,
+                                            )}
+                                        </span>
+                                        <span>
+                                            {getWorkshopDeliveryStatusLabel(
+                                                lang,
+                                                workshop.deliveryStatus,
+                                            )}
+                                        </span>
+                                    </div>
+
+                                    <span class="cta">View workshop →</span>
+                                </div>
+
+                                {t.image?.src && (
+                                    <div class="workshop-card-poster-wrap">
+                                        <img
+                                            src={t.image.src}
+                                            alt={t.image.alt ?? t.title}
+                                            class="workshop-card-poster"
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                )}
+                            </a>
+                        </div>
+                    );
+                })
+            }
+        </div>
+    </section>
+</BaseLayout>

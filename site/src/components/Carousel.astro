@@ -1,0 +1,123 @@
+---
+interface Slide {
+    image: ImageMetadata;
+    alt: string;
+    title: string;
+    subtitle: string;
+}
+
+interface Props {
+    slides: Slide[];
+    label?: string;
+}
+
+import { Image } from "astro:assets";
+
+const { slides, label = "Carousel" } = Astro.props;
+---
+
+<div class="carousel" aria-label={label}>
+    <div class="controls">
+        <button
+            class="ctrl"
+            type="button"
+            id="prevBtn"
+            aria-label="Previous slide">‹</button
+        >
+        <button class="ctrl" type="button" id="nextBtn" aria-label="Next slide"
+            >›</button
+        >
+    </div>
+
+    <div class="slides" id="slides">
+        {
+            slides.map((slide) => (
+                <figure class="slide">
+                    <Image src={slide.image} alt={slide.alt} />
+                    <div class="overlay" />
+                    <figcaption class="caption">
+                        <div class="cap-text">
+                            <p class="cap-title">{slide.title}</p>
+                            <p class="cap-sub">{slide.subtitle}</p>
+                        </div>
+                    </figcaption>
+                </figure>
+            ))
+        }
+    </div>
+</div>
+
+<div class="dots" id="dots" aria-label="Slide navigation"></div>
+
+<script>
+    const slides = document.getElementById("slides")!;
+    const dotsContainer = document.getElementById("dots")!;
+    const prevBtn = document.getElementById("prevBtn")!;
+    const nextBtn = document.getElementById("nextBtn")!;
+
+    const total = slides.querySelectorAll(".slide").length;
+    let current = 0;
+    let timer: ReturnType<typeof setInterval>;
+
+    // Build dots
+    for (let i = 0; i < total; i++) {
+        const btn = document.createElement("button");
+        btn.className = "dotbtn";
+        btn.setAttribute("aria-label", `Go to slide ${i + 1}`);
+        btn.setAttribute("aria-current", i === 0 ? "true" : "false");
+        btn.addEventListener("click", () => goTo(i));
+        dotsContainer.appendChild(btn);
+    }
+
+    function updateDots() {
+        dotsContainer.querySelectorAll(".dotbtn").forEach((btn, i) => {
+            btn.setAttribute("aria-current", i === current ? "true" : "false");
+        });
+    }
+
+    function goTo(index: number) {
+        current = (index + total) % total;
+        slides.style.transform = `translateX(-${current * 100}%)`;
+        updateDots();
+        resetTimer();
+    }
+
+    function next() {
+        goTo(current + 1);
+    }
+    function prev() {
+        goTo(current - 1);
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(next, 4000);
+    }
+
+    prevBtn.addEventListener("click", prev);
+    nextBtn.addEventListener("click", next);
+
+    slides
+        .closest(".carousel")!
+        .addEventListener("mouseenter", () => clearInterval(timer));
+    slides.closest(".carousel")!.addEventListener("mouseleave", resetTimer);
+
+    let touchStartX = 0;
+    slides.addEventListener(
+        "touchstart",
+        (e) => {
+            touchStartX = e.touches[0].clientX;
+        },
+        { passive: true },
+    );
+    slides.addEventListener(
+        "touchend",
+        (e) => {
+            const delta = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(delta) > 40) delta > 0 ? next() : prev();
+        },
+        { passive: true },
+    );
+
+    resetTimer();
+</script>
