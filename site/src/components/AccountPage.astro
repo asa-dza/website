@@ -1,0 +1,75 @@
+---
+/**
+ * The signed-in learner's account page, shared by the three language routes.
+ *
+ * It shows who the session says the learner is and links to the four things
+ * a learner does with an account: open the learning platform, change their
+ * address or password at the account service (in the page's language), and
+ * sign out of everything. Nothing here decides anything about registration
+ * or access; it is navigation.
+ */
+import { ACCOUNT_PUBLIC_URL, LEARNING_PUBLIC_URL } from "astro:env/server";
+import { accountStrings } from "../i18n/account.ts";
+import { siteContact, type Lang } from "../i18n/site.ts";
+import { accountUrlInLanguage } from "../lib/server/oidc.ts";
+import type { Session } from "../lib/server/session.ts";
+
+interface Props {
+    lang: Lang;
+    session: Session;
+    notice?: "signin-denied" | null;
+}
+
+const { lang, session, notice = null } = Astro.props;
+const t = accountStrings[lang];
+
+// Moodle's own `?lang=` parameter carries the chosen language through the
+// sign-in round trip (the auth_asalogout plugin keeps it).
+const learningUrl = LEARNING_PUBLIC_URL ? `${LEARNING_PUBLIC_URL.replace(/\/+$/, "")}/?lang=${lang}` : null;
+const changeEmailUrl = ACCOUNT_PUBLIC_URL ? accountUrlInLanguage("/if/flow/asa-email-change/", lang) : null;
+const changePasswordUrl = ACCOUNT_PUBLIC_URL ? accountUrlInLanguage("/if/flow/asa-password-change/", lang) : null;
+---
+
+<section class="account" data-testid="account-page">
+    <h1>{t.heading}</h1>
+    {notice === "signin-denied" && <p class="notice" role="status">{t.signInDenied}</p>}
+    <p>{t.intro}</p>
+
+    <dl class="identity">
+        <dt>{t.signedInAs}</dt>
+        <dd data-testid="account-name">{session.name}</dd>
+        <dt>{t.email}</dt>
+        <dd data-testid="account-email"><span class="asa-ltr">{session.email}</span></dd>
+    </dl>
+
+    <ul class="links">
+        {learningUrl && (
+            <li><a class="btn primary" id="go-learning" href={learningUrl}>{t.goToLearning}</a></li>
+        )}
+        <li><a class="btn" href={`/${lang}/workshops/`}>{t.browseWorkshops}</a></li>
+        {changeEmailUrl && (
+            <li><a class="btn" id="change-email" href={changeEmailUrl}>{t.changeEmail}</a></li>
+        )}
+        {changePasswordUrl && (
+            <li><a class="btn" id="change-password" href={changePasswordUrl}>{t.changePassword}</a></li>
+        )}
+        <li><a class="btn" id="logout" href={`/auth/logout?lang=${lang}`} data-astro-prefetch="false">{t.signOut}</a></li>
+    </ul>
+
+    <p class="support">
+        {t.support} <a href={`mailto:${siteContact.emails.info}`}><span class="asa-ltr">{siteContact.emails.info}</span></a>
+    </p>
+</section>
+
+<style>
+    .account { max-width: 42rem; }
+    .identity { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1rem; margin: 1.25rem 0; }
+    .identity dt { color: var(--SupportingText); }
+    .identity dd { margin: 0; }
+    .links { list-style: none; padding: 0; display: grid; gap: 0.6rem; margin: 1.5rem 0; }
+    .btn { display: block; padding: 0.8rem 1rem; border-radius: 10px; border: 1px solid rgba(27, 40, 36, 0.18); color: var(--PrimaryAccent); text-decoration: none; font-weight: 600; }
+    .btn.primary { background: var(--SecondaryAccent); color: var(--OnDarkText); border-color: var(--SecondaryAccent); }
+    .notice { padding: 0.75rem 1rem; border-radius: 10px; background: rgba(153, 179, 183, 0.25); }
+    .support { color: var(--SupportingText); font-size: 0.9rem; }
+    .asa-ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+</style>

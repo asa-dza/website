@@ -6,6 +6,13 @@
  */
 export type Lang = "ar" | "fr" | "en";
 
+export const LANGS: readonly Lang[] = ["ar", "fr", "en"];
+
+/** Whether a value names one of the site's languages. */
+export function isLang(value: unknown): value is Lang {
+  return value === "ar" || value === "fr" || value === "en";
+}
+
 export const siteName = "ASA";
 
 export const siteFullName: Record<Lang, string> = {

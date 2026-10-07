@@ -1,0 +1,84 @@
+---
+/**
+ * The registration form for one course offering, shared by the three language
+ * routes.
+ *
+ * A form with nothing to type: the learner's identity is their session, the
+ * offering is the route. Submitting sends WHO (issuer, subject, the account
+ * service's user id) and WHAT (the offering code) to the integration layer,
+ * which re-checks the identity against the account service's current record
+ * before recording a request. The outcome is rendered here, in words a
+ * learner can act on; the request's reference is shown once.
+ */
+import { accountStrings } from "../i18n/account.ts";
+import { siteContact, type Lang } from "../i18n/site.ts";
+import { accountUrlInLanguage } from "../lib/server/oidc.ts";
+import type { RegistrationSubmissionOutcome } from "../lib/server/integration.ts";
+import type { Session } from "../lib/server/session.ts";
+
+interface Props {
+    lang: Lang;
+    session: Session;
+    courseOfferingCode: string;
+    outcome: RegistrationSubmissionOutcome | null;
+}
+
+const { lang, session, courseOfferingCode, outcome } = Astro.props;
+const t = accountStrings[lang].register;
+---
+
+<section class="register" data-testid="register-page">
+    <h1>{t.heading}</h1>
+    <p>{t.intro}</p>
+
+    <dl class="facts">
+        <dt>{t.offering}</dt>
+        <dd data-testid="register-offering"><span class="asa-ltr">{courseOfferingCode}</span></dd>
+        <dt>{t.asLearner}</dt>
+        <dd data-testid="register-learner">{session.name} — <span class="asa-ltr">{session.email}</span></dd>
+    </dl>
+
+    {outcome?.ok && (
+        <div class="outcome ok" role="status" data-testid="register-sent">
+            <p><strong>{t.sent}</strong></p>
+            <p>{t.sentRef}: <code data-testid="register-reference">{outcome.requestId}</code></p>
+            <p>{t.nextSteps}</p>
+            <p><a href={`/${lang}/account/`}>{accountStrings[lang].heading}</a></p>
+        </div>
+    )}
+
+    {outcome && !outcome.ok && (
+        <div class="outcome error" role="alert" data-testid="register-error" data-reason={outcome.reason}>
+            <p>{t.errors[outcome.reason]}</p>
+            {outcome.reason === "identity-refused" && (
+                <p><a href={accountUrlInLanguage("/if/flow/asa-resend-verification/", lang)}>{t.resendVerification}</a></p>
+            )}
+        </div>
+    )}
+
+    {!outcome?.ok && (
+        <form method="post" class="submit">
+            <input type="hidden" name="courseOfferingCode" value={courseOfferingCode} />
+            <button type="submit" class="btn primary" data-testid="register-submit">{t.submit}</button>
+        </form>
+    )}
+
+    <p class="note">{t.noteIdentity}</p>
+    <p class="note">{t.noteNoAccess}</p>
+    <p class="support">
+        {accountStrings[lang].support} <a href={`mailto:${siteContact.emails.info}`}><span class="asa-ltr">{siteContact.emails.info}</span></a>
+    </p>
+</section>
+
+<style>
+    .register { max-width: 42rem; }
+    .facts { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1rem; margin: 1.25rem 0; }
+    .facts dt { color: var(--SupportingText); }
+    .facts dd { margin: 0; }
+    .btn { display: inline-block; padding: 0.8rem 1.2rem; border-radius: 10px; border: 1px solid var(--SecondaryAccent); background: var(--SecondaryAccent); color: var(--OnDarkText); font: inherit; font-weight: 600; cursor: pointer; }
+    .outcome { padding: 1rem; border-radius: 10px; margin: 1rem 0; }
+    .outcome.ok { background: rgba(153, 179, 183, 0.25); }
+    .outcome.error { background: rgba(138, 47, 29, 0.12); }
+    .note, .support { color: var(--SupportingText); font-size: 0.9rem; }
+    .asa-ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+</style>

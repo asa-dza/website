@@ -75,3 +75,86 @@ export async function checkIntegrationReachable(
         return { reachable: false, reason: timedOut ? 'timeout' : 'unreachable' };
     }
 }
+
+// ---------------------------------------------------------------------------
+// Submitting a registration request
+// ---------------------------------------------------------------------------
+
+import { INTEGRATION_WEBSITE_TOKEN } from 'astro:env/server';
+import type { Session } from './session.ts';
+
+/** The integration layer's answer, in the website's vocabulary. */
+export type RegistrationSubmissionOutcome =
+    | { readonly ok: true; readonly requestId: string }
+    | {
+          readonly ok: false;
+          readonly reason:
+              | 'identity-refused' // the account service says this identity may not register (unverified, inactive, blocked)
+              | 'offering-not-found'
+              | 'request-rejected' // registration not open, or refused by the registration system's rules
+              | 'unavailable' // try again later
+              | 'misconfigured'; // this website has no credential, or integration refused it
+      };
+
+/**
+ * Submits a registration request for the signed-in learner.
+ *
+ * What is sent is WHO (the identity from the session: issuer, subject and
+ * the account service's user id) and WHAT (the offering). Nothing typed into
+ * a form travels: the applicant's name and address are the account
+ * service's verified record, read by the integration layer. A success means
+ * a request now exists for staff to review -- not that the learner is
+ * registered, and not that they have learning-platform access.
+ */
+export async function submitRegistrationRequest(
+    session: Session,
+    courseOfferingCode: string,
+    timeoutMs = 10_000,
+): Promise<RegistrationSubmissionOutcome> {
+    if (!INTEGRATION_WEBSITE_TOKEN) {
+        return { ok: false, reason: 'misconfigured' };
+    }
+    let response: Response;
+    try {
+        response = await fetch(new URL('/registration-requests', integrationBaseUrl), {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${INTEGRATION_WEBSITE_TOKEN}`,
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+            body: JSON.stringify({
+                identity: {
+                    issuer: session.issuer,
+                    subject: session.subject,
+                    providerUserId: session.providerUserId,
+                    ...(session.providerUserUuid ? { providerUserUuid: session.providerUserUuid } : {}),
+                },
+                courseOfferingCode,
+            }),
+            signal: AbortSignal.timeout(timeoutMs),
+        });
+    } catch {
+        return { ok: false, reason: 'unavailable' };
+    }
+    if (response.status === 201) {
+        const body = (await response.json().catch(() => null)) as { requestId?: unknown } | null;
+        if (body && typeof body.requestId === 'string') {
+            return { ok: true, requestId: body.requestId };
+        }
+        return { ok: false, reason: 'unavailable' };
+    }
+    switch (response.status) {
+        case 403:
+            return { ok: false, reason: 'identity-refused' };
+        case 404:
+            return { ok: false, reason: 'offering-not-found' };
+        case 422:
+            return { ok: false, reason: 'request-rejected' };
+        case 401:
+        case 500:
+            return { ok: false, reason: 'misconfigured' };
+        default:
+            return { ok: false, reason: 'unavailable' };
+    }
+}

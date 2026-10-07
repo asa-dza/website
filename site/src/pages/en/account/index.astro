@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import AccountPage from "../../../components/AccountPage.astro";
+import { accountStrings } from "../../../i18n/account.ts";
+import { readSession } from "../../../lib/server/session.ts";
+
+export const prerender = false;
+
+const lang = "en" as const;
+const alternates = { ar: "/ar/account/", fr: "/fr/account/", en: "/en/account/" };
+const session = readSession(Astro.cookies);
+if (!session) {
+    return Astro.redirect(`/auth/login?lang=${lang}&next=${encodeURIComponent(`/${lang}/account/`)}`, 302);
+}
+Astro.cookies.set("asa_lang", lang, { path: "/", sameSite: "lax", maxAge: 31536000 });
+Astro.response.headers.set("cache-control", "no-store");
+const notice = Astro.url.searchParams.get("signin") === "denied" ? "signin-denied" : null;
+---
+
+<BaseLayout title={accountStrings[lang].title} lang={lang} alternates={alternates}>
+    <AccountPage lang={lang} session={session} notice={notice} />
+</BaseLayout>

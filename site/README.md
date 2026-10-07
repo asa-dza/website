@@ -44,7 +44,12 @@ client-side code ever imports them.
 | Variable | Required | Meaning |
 |---|---|---|
 | `INTEGRATION_BASE_URL` | when read | Where the private integration service answers, e.g. `http://integration:3001` |
-| `INTEGRATION_WEBSITE_TOKEN` | not yet | The website's credential for that service. Wired but unread until the registration form exists |
+| `INTEGRATION_WEBSITE_TOKEN` | when read | The website's credential for that service, used by the registration entry point |
+| `WEBSITE_PUBLIC_URL` | for sign-in | The origin learners use, e.g. `http://127.0.0.1:3002`; the OIDC redirect URI is derived from it |
+| `OIDC_ISSUER` | for sign-in | The account service's issuer for this client, e.g. `https://account.asadza.test/application/o/website/` |
+| `OIDC_CLIENT_ID`, `OIDC_CLIENT_SECRET` | for sign-in | This site's confidential OIDC client |
+| `WEBSITE_SESSION_SECRET` | for sign-in | Key material for the encrypted session cookie |
+| `ACCOUNT_PUBLIC_URL`, `LEARNING_PUBLIC_URL` | optional | Where the account page links to (change address, change password, sign out chain, open the learning platform) |
 
 Because both are runtime values, a plain `npm run build` needs neither.
 
@@ -53,6 +58,25 @@ Neither belongs in a file in this repository. Both come from the platform stack'
 
 **The website holds no ERPNext or Moodle credential, and must not be given one.**
 It reaches both only through the integration service.
+
+## Sign-in and the account page
+
+The website never sees a password. `/auth/login` starts an OpenID Connect
+authorization-code flow with PKCE at the account service (through its
+language redirector, so the learner meets it in the language they were using),
+`/auth/callback` exchanges the code server-side and stores the claims in an
+encrypted, HTTP-only session cookie (`asa_session`), and `/auth/logout` clears
+it and hands over to the learning platform's coordinated sign-out. All three
+are on-demand routes in `src/pages/auth/`; the helpers are in
+`src/lib/server/oidc.ts` and `src/lib/server/session.ts`.
+
+What the session carries is the identity the account service asserted: the
+issuer, the subject, the account-service user id, the name and the address.
+`/{lang}/account/` shows it; `/{lang}/register/[code]/` submits a registration
+request to the integration service **from the session**, never from form
+fields, so a request is bound to the identity that was signed in. An identity
+the account service has not verified is refused by the integration (`403`,
+`IDENTITY_REFUSED`) and the page says so.
 
 ## Server-only code
 

@@ -181,6 +181,12 @@ export type Workshop = {
     registrationStatus: WorkshopRegistrationStatus;
     deliveryStatus: WorkshopDeliveryStatus;
     deliveryLanguages: WorkshopLanguage[];
+    /**
+     * The registration system's Course Offering code this workshop is sold
+     * as. When set, the registration link is this site's own authenticated
+     * form for that offering; `registrationUrl` is then unused.
+     */
+    offeringCode?: string;
     registrationUrl?: string;
     featured?: boolean;
     published?: boolean;
@@ -208,4 +214,18 @@ export async function getWorkshopSlugs(): Promise<string[]> {
     }
 
     return TEST_WORKSHOPS.filter((w) => w.published).map((w) => w.slug);
+}
+
+/**
+ * Where a workshop's "Register" link goes, in one language: this site's own
+ * registration form for the offering when a code is known, otherwise the
+ * external address the record carries, otherwise nowhere.
+ */
+export function registrationUrl(workshop: Workshop, lang: Lang): string | undefined {
+    if (workshop.offeringCode) {
+        return `/${lang}/register/${encodeURIComponent(workshop.offeringCode)}/`;
+    }
+    return workshop.registrationUrl && workshop.registrationUrl !== "#"
+        ? workshop.registrationUrl
+        : undefined;
 }

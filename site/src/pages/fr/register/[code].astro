@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import RegisterPage from "../../../components/RegisterPage.astro";
+import { accountStrings } from "../../../i18n/account.ts";
+import { submitRegistrationRequest, type RegistrationSubmissionOutcome } from "../../../lib/server/integration.ts";
+import { readSession } from "../../../lib/server/session.ts";
+
+export const prerender = false;
+
+const lang = "fr" as const;
+const code = (Astro.params.code ?? "").trim();
+const alternates = { ar: `/ar/register/${code}/`, fr: `/fr/register/${code}/`, en: `/en/register/${code}/` };
+
+if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,120}$/.test(code)) {
+    return new Response("Not found", { status: 404 });
+}
+const session = readSession(Astro.cookies);
+if (!session) {
+    return Astro.redirect(`/auth/login?lang=${lang}&next=${encodeURIComponent(`/${lang}/register/${code}/`)}`, 302);
+}
+Astro.response.headers.set("cache-control", "no-store");
+
+let outcome: RegistrationSubmissionOutcome | null = null;
+if (Astro.request.method === "POST") {
+    // Astro's origin check refuses a cross-site POST before this runs. The
+    // offering comes from the route, not the form: the hidden field is only
+    // there so a stale form cannot submit for another page's offering.
+    const form = await Astro.request.formData();
+    if (String(form.get("courseOfferingCode") ?? "") !== code) {
+        return new Response("Bad request", { status: 400 });
+    }
+    outcome = await submitRegistrationRequest(session, code);
+}
+---
+
+<BaseLayout title={accountStrings[lang].register.title} lang={lang} alternates={alternates}>
+    <RegisterPage lang={lang} session={session} courseOfferingCode={code} outcome={outcome} />
+</BaseLayout>

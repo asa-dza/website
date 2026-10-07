@@ -72,6 +72,24 @@ export default defineConfig({
                 access: 'secret',
                 optional: true,
             }),
+
+            // --- Sign-in through the account service (OIDC) -----------------
+            // The website is a confidential OIDC client of the account
+            // service: the browser is redirected there to sign in, and this
+            // server exchanges the code and keeps an encrypted session cookie.
+            // All server-only and read at runtime; the build needs none of
+            // them, and a deployment without them serves every institutional
+            // page and refuses only the account and registration routes.
+            WEBSITE_PUBLIC_URL: envField.string({ context: 'server', access: 'secret', optional: true }),
+            OIDC_ISSUER: envField.string({ context: 'server', access: 'secret', optional: true }),
+            OIDC_CLIENT_ID: envField.string({ context: 'server', access: 'secret', optional: true }),
+            OIDC_CLIENT_SECRET: envField.string({ context: 'server', access: 'secret', optional: true }),
+            // Encrypts the session cookie. Rotating it signs every learner out.
+            WEBSITE_SESSION_SECRET: envField.string({ context: 'server', access: 'secret', optional: true }),
+            // Where the account service and the learning platform are, as the
+            // BROWSER reaches them: the account page links there.
+            ACCOUNT_PUBLIC_URL: envField.string({ context: 'server', access: 'secret', optional: true }),
+            LEARNING_PUBLIC_URL: envField.string({ context: 'server', access: 'secret', optional: true }),
         },
     },
 });

@@ -31,6 +31,7 @@ export const nav: Record<"ar" | "fr" | "en", NavLink[]> = {
         { label: "المجالات", href: "/ar/areas/" },
         { label: "من نحن", href: "/ar/about/" },
         { label: "اتصل بنا", href: "/ar/contact/" },
+        { label: "حسابي", href: "/ar/account/" },
     ],
     fr: [
         { label: "Accueil", href: "/fr/" },
@@ -38,6 +39,7 @@ export const nav: Record<"ar" | "fr" | "en", NavLink[]> = {
         { label: "Domaines", href: "/fr/areas/" },
         { label: "À propos", href: "/fr/about/" },
         { label: "Contact", href: "/fr/contact/" },
+        { label: "Mon compte", href: "/fr/account/" },
     ],
     en: [
         { label: "Home", href: "/en/" },
@@ -45,5 +47,6 @@ export const nav: Record<"ar" | "fr" | "en", NavLink[]> = {
         { label: "Areas", href: "/en/areas/" },
         { label: "About", href: "/en/about/" },
         { label: "Contact", href: "/en/contact/" },
+        { label: "Account", href: "/en/account/" },
     ],
 };

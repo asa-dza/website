@@ -26,6 +26,7 @@ import type { Workshop } from "../../lib/workshops";
 export const TEST_WORKSHOPS: Workshop[] = [
     {
         slug: "ml-foundations",
+        offeringCode: "LV-PY-B",
         areaSlug: "ai",
         t: {
             en: {
@@ -204,6 +205,7 @@ export const TEST_WORKSHOPS: Workshop[] = [
 
     {
         slug: "python-data-analysis",
+        offeringCode: "LV-PY-A",
         areaSlug: "programming",
         t: {
             en: {

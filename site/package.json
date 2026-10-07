@@ -16,6 +16,7 @@
     "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/lucide": "^1.2.98",
     "astro": "^6.0.4",
-    "astro-icon": "^1.1.5"
+    "astro-icon": "^1.1.5",
+    "openid-client": "^6.8.8"
   }
 }

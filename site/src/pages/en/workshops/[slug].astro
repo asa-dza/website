@@ -6,8 +6,7 @@ import {
     getWorkshopDeliveryFormatLabel,
     getWorkshopRegistrationStatusLabel,
     getWorkshopDeliveryStatusLabel,
-    getWorkshopDeliveryLanguageLabel,
-} from "../../../lib/workshops";
+    getWorkshopDeliveryLanguageLabel, registrationUrl } from "../../../lib/workshops";
 
 export async function getStaticPaths() {
     const workshops = await getAllWorkshops();
@@ -121,11 +120,11 @@ function getInstructorInitials(name: string) {
                 </div>
 
                 {
-                    workshop.registrationUrl && (
+                    registrationUrl(workshop, "en") && (
                         <div class="btns">
                             <a
                                 class="btn primary"
-                                href={workshop.registrationUrl}
+                                href={registrationUrl(workshop, "en")}
                             >
                                 Register
                             </a>
@@ -289,8 +288,8 @@ function getInstructorInitials(name: string) {
 
         <div class="btns">
             {
-                workshop.registrationUrl && (
-                    <a class="btn primary" href={workshop.registrationUrl}>
+                registrationUrl(workshop, "en") && (
+                    <a class="btn primary" href={registrationUrl(workshop, "en")}>
                         Register
                     </a>
                 )
