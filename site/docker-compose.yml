@@ -1,7 +1,34 @@
+# Standalone: the website on its own, with no platform stack.
+#
+# For looking at the built site in a browser without starting ERPNext, Moodle
+# and integration. The real deployment is the platform repository's Compose
+# stack, which builds this same image and puts it behind Caddy -- see
+# `platform/deploy/compose/docker-compose.yml`.
+#
+#   docker compose up --build      then http://127.0.0.1:8085
+#
+# The published port maps to 3000, not 80: the container runs the Astro Node
+# server now rather than a file server, and the server listens on 3000.
+#
+# INTEGRATION_BASE_URL points at a host that does not resolve, on purpose.
+# Nothing this phase serves needs the integration service, so the site and its
+# health endpoint work without it -- and an address that cannot resolve is a
+# clearer signal than a plausible one if a later phase starts depending on it
+# quietly. Reaching the real service means running the platform stack.
+#
+# No credential is set here. `INTEGRATION_WEBSITE_TOKEN` belongs to the platform
+# stack's .env, and this file is tracked.
 services:
   site:
     build: .
     container_name: site
     ports:
-      - "8080:80"
+      - "127.0.0.1:8085:3000"
+    environment:
+      INTEGRATION_BASE_URL: http://integration.invalid:3001
     restart: unless-stopped
+    # The Astro standalone server handles SIGTERM, but as PID 1 a process
+    # inherits no default handler for the signals it does not handle. `init`
+    # puts a minimal reaper in front, so `docker compose stop` is a clean stop
+    # rather than a ten-second wait and a kill.
+    init: true

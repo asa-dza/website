@@ -1,5 +1,39 @@
+/**
+ * workshops.ts — workshop types, translated labels, and retrieval.
+ *
+ * This is the module the workshop pages import. It holds the shape of a
+ * workshop, the label tables that turn an enum value into words in each
+ * language, and the three lookups a page needs: the list, one record by slug,
+ * and the slugs `getStaticPaths` builds routes from.
+ *
+ * The sample records themselves live in `../data/fixtures/workshops.ts`. They
+ * were moved out of this file, not changed: this module still decides whether
+ * they are used and still does the `published` filtering, so the answers the
+ * pages get are the same ones.
+ *
+ * The lookups are `async` although nothing here awaits. That is deliberate and
+ * worth keeping: the eventual source is the integration service over HTTP, and
+ * an async signature now means that change does not reach the pages.
+ */
+import type { Lang } from "../i18n/site.ts";
+import { TEST_WORKSHOPS } from "../data/fixtures/workshops";
+
+/**
+ * Whether the sample records are served.
+ *
+ * With this `false` every lookup below answers as though there were no
+ * workshops — an empty list, a null record, no slugs — rather than throw. That
+ * is the behaviour a real source has to preserve.
+ */
 const USE_TEST_DATA = true;
-export type Lang = "en" | "fr" | "ar";
+
+/**
+ * The site has one definition of its languages, in `i18n/site.ts`. It is
+ * re-exported here so a caller that needs the type alongside these functions
+ * does not have to reach for a second module, and so this file does not keep a
+ * second copy of the same union.
+ */
+export type { Lang };
 
 export type LocalizedImage = {
     src: string;
@@ -31,7 +65,10 @@ export type WorkshopTranslation = {
 export type WorkshopDeliveryFormat = "in-person" | "online" | "hybrid";
 export type WorkshopRegistrationStatus = "open" | "full" | "closed";
 export type WorkshopDeliveryStatus = "scheduled" | "completed" | "cancelled";
-export type WorkshopLanguage = "en" | "fr" | "ar";
+// A workshop is delivered in one or more of the site's own languages, so this
+// is that same union rather than a second copy of it. The name is kept
+// because it reads correctly at the use site: `deliveryLanguages`.
+export type WorkshopLanguage = Lang;
 
 export const workshopDeliveryFormatLabels = {
     en: {
@@ -148,268 +185,6 @@ export type Workshop = {
     featured?: boolean;
     published?: boolean;
 };
-
-const TEST_WORKSHOPS: Workshop[] = [
-    {
-        slug: "ml-foundations",
-        areaSlug: "ai",
-        t: {
-            en: {
-                title: "Foundations of Machine Learning",
-                summary: "Core concepts and practical intuition.",
-                description:
-                    "An intensive introduction to supervised learning, model evaluation, and generalization.",
-                audienceDescription:
-                    "Students and professionals with basic programming knowledge.",
-                outcomes: [
-                    "Understand key ML concepts",
-                    "Train simple models",
-                    "Evaluate performance",
-                ],
-                image: {
-                    src: "/assets/images/workshops/ml-foundations-en.png",
-                    alt: "Participants attending a machine learning workshop",
-                },
-                instructors: [
-                    {
-                        name: "Amina Rahal",
-                        honorific: "Dr.",
-                        role: "AI Specialist",
-                        biography:
-                            "Dr. Amina Rahal works on applied artificial intelligence and teaches introductory and intermediate machine learning.",
-                        photo: {
-                            src: "/assets/images/instructors/amina-rahal.png",
-                            alt: "Portrait of Dr. Amina Rahal",
-                        },
-                    },
-                    {
-                        name: "Karim Bensaid",
-                        honorific: "Dr.",
-                        role: "Data Science Lecturer",
-                    },
-                ],
-                venue: "Algiers Center",
-            },
-
-            fr: {
-                title: "Fondements du Machine Learning",
-                summary: "Concepts fondamentaux et intuition pratique.",
-                description:
-                    "Introduction aux modèles supervisés et à leur évaluation.",
-                image: {
-                    src: "/assets/images/workshops/ml-foundations-fr.png",
-                    alt: "Participants à un atelier de machine learning",
-                },
-                instructors: [
-                    {
-                        name: "Amina Rahal",
-                        honorific: "Dr",
-                        role: "Spécialiste IA",
-                        biography:
-                            "Dr Amina Rahal travaille sur l’intelligence artificielle appliquée et enseigne le machine learning.",
-                        photo: {
-                            src: "/assets/images/instructors/amina-rahal.png",
-                            alt: "Portrait de Dr Amina Rahal",
-                        },
-                    },
-                    {
-                        name: "Karim Bensaid",
-                        honorific: "Dr",
-                        role: "Enseignant en science des données",
-                    },
-                ],
-                venue: "Centre d'Alger",
-            },
-
-            ar: {
-                title: "أساسيات تعلم الآلة",
-                summary: "مفاهيم أساسية وفهم عملي.",
-                description: "مقدمة في النماذج والإحصاء التطبيقي.",
-                image: {
-                    src: "/assets/images/workshops/ml-foundations-ar.png",
-                    alt: "مشاركون في ورشة حول تعلم الآلة",
-                },
-                instructors: [
-                    {
-                        name: "أمينة رحال",
-                        honorific: "د.",
-                        role: "متخصصة في الذكاء الاصطناعي",
-                        biography:
-                            "تعمل الدكتورة أمينة رحال في مجال الذكاء الاصطناعي التطبيقي وتدرّس أساسيات تعلم الآلة.",
-                        photo: {
-                            src: "/assets/images/instructors/amina-rahal.png",
-                            alt: "صورة الدكتورة أمينة رحال",
-                        },
-                    },
-                    {
-                        name: "كريم بن سعيد",
-                        honorific: "د.",
-                        role: "محاضر في علم البيانات",
-                    },
-                ],
-                venue: "مركز الجزائر",
-            },
-        },
-        startAt: "2026-10-15T17:00:00",
-        endAt: "2026-10-20T20:00:00",
-        deliveryFormat: "hybrid",
-        registrationStatus: "open",
-        deliveryStatus: "scheduled",
-        deliveryLanguages: ["en", "fr"],
-        registrationUrl: "#",
-        featured: true,
-        published: true,
-    },
-
-    {
-        slug: "academic-writing",
-        areaSlug: "academic-support",
-        t: {
-            en: {
-                title: "Academic Writing Excellence",
-                summary: "Structure, clarity, and rigor in writing.",
-                description:
-                    "Develop high-quality academic writing skills for reports, theses, and publications.",
-                outcomes: [
-                    "Structure arguments",
-                    "Improve clarity",
-                    "Avoid common mistakes",
-                ],
-                instructors: [
-                    {
-                        name: "Leila Haddad",
-                        honorific: "Dr.",
-                        role: "Academic Skills Trainer",
-                        biography:
-                            "Dr. Leila Haddad supports students and researchers in academic writing, argument development, and document organization.",
-                    },
-                ],
-                venue: "Oran Campus",
-            },
-
-            fr: {
-                title: "Rédaction Académique",
-                summary: "Structure et clarté.",
-                description: "Améliorer la qualité des écrits académiques.",
-                instructors: [
-                    {
-                        name: "Leila Haddad",
-                        honorific: "Dr",
-                        role: "Formatrice en compétences académiques",
-                        biography:
-                            "Dr Leila Haddad accompagne les étudiants et chercheurs en rédaction académique et en structuration des idées.",
-                    },
-                ],
-                venue: "Campus d'Oran",
-            },
-
-            ar: {
-                title: "الكتابة الأكاديمية",
-                summary: "تنظيم ووضوح.",
-                description: "تطوير مهارات الكتابة الأكاديمية.",
-                instructors: [
-                    {
-                        name: "ليلى حداد",
-                        honorific: "د.",
-                        role: "مدربة مهارات أكاديمية",
-                        biography:
-                            "تساعد الدكتورة ليلى حداد الطلبة والباحثين على تطوير الكتابة الأكاديمية وبناء الحجج وتنظيم الوثائق.",
-                    },
-                ],
-                venue: "حرم وهران",
-            },
-        },
-        startAt: "2026-11-01T09:00:00",
-        deliveryFormat: "in-person",
-        registrationStatus: "open",
-        deliveryStatus: "scheduled",
-        deliveryLanguages: ["ar"],
-        registrationUrl: "#",
-        published: true,
-    },
-
-    {
-        slug: "python-data-analysis",
-        areaSlug: "programming",
-        t: {
-            en: {
-                title: "Python for Data Analysis",
-                summary: "From data to insight using Python.",
-                description:
-                    "Hands-on workshop covering NumPy, pandas, and visualization.",
-                outcomes: [
-                    "Manipulate datasets",
-                    "Perform analysis",
-                    "Visualize results",
-                ],
-                image: {
-                    src: "/assets/images/workshops/python-data-analysis-en.png",
-                    alt: "Laptop screen showing Python data analysis work",
-                },
-                instructors: [
-                    {
-                        name: "Samir Touati",
-                        honorific: "Dr.",
-                        photo: {
-                            src: "/assets/images/instructors/samir-touati.png",
-                            alt: "Portrait of Dr. Samir Touati",
-                        },
-                    },
-                ],
-                venue: "Online",
-            },
-
-            fr: {
-                title: "Python pour l'Analyse de Données",
-                summary: "Analyse pratique avec Python.",
-                description: "Manipulation et visualisation de données.",
-                image: {
-                    src: "/assets/images/workshops/python-data-analysis-fr.png",
-                    alt: "Ordinateur affichant une analyse de données avec Python",
-                },
-                instructors: [
-                    {
-                        name: "Samir Touati",
-                        honorific: "Dr",
-                        photo: {
-                            src: "/assets/images/instructors/samir-touati.png",
-                            alt: "Portrait de Dr Samir Touati",
-                        },
-                    },
-                ],
-                venue: "En ligne",
-            },
-
-            ar: {
-                title: "بايثون لتحليل البيانات",
-                summary: "تحليل عملي للبيانات.",
-                description: "استخدام الأدوات الأساسية للتحليل.",
-                image: {
-                    src: "/assets/images/workshops/python-data-analysis-ar.png",
-                    alt: "حاسوب يعرض عملاً في تحليل البيانات باستخدام بايثون",
-                },
-                instructors: [
-                    {
-                        name: "سمير تواتي",
-                        honorific: "د.",
-                        photo: {
-                            src: "/assets/images/instructors/samir-touati.png",
-                            alt: "صورة الدكتور سمير تواتي",
-                        },
-                    },
-                ],
-                venue: "عن بعد",
-            },
-        },
-        startAt: "2026-12-05T14:00:00",
-        deliveryFormat: "online",
-        registrationStatus: "closed",
-        deliveryStatus: "scheduled",
-        deliveryLanguages: ["en"],
-        registrationUrl: "#",
-        published: true,
-    },
-];
 
 export async function getAllWorkshops(): Promise<Workshop[]> {
     if (!USE_TEST_DATA) {

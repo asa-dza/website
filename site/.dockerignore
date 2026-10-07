@@ -1,6 +1,24 @@
+# Anything not needed to build the image. Keeping this tight matters for more
+# than speed: the build context is sent to the daemon, so an untracked .env or
+# a stray credential file in the working tree would be uploaded with it.
 node_modules
 dist
 .git
 .gitignore
 Dockerfile
 npm-debug.log
+.astro
+.env
+.env.*
+*.log
+
+# Deployment definitions describe how this image is run, not what it contains.
+docker-compose.yml
+.dockerignore
+Caddyfile
+
+# Documentation and editor configuration belong to the repository, not the
+# runtime.
+README.md
+*.md
+.vscode
